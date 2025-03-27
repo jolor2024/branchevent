@@ -42,7 +42,7 @@ export default function Welcome() {
                     )}
                 </nav>
                 <div className='bg-primary-red py-10'>
-                    <h1 className='text-[96px] text-white '>LIA <br /> EVENT <br />  2025 </h1>
+                    <h1 className='text-[96px] text-white '>LIA <br /> EVENT test<br />  2025 </h1>
                 </div>
             </header>
         </>
