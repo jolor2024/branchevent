@@ -25,12 +25,11 @@ export default function Welcome() {
                     ) : (
                         <>
                             <Link
-                                href={route('login')}
-                                className="bg-primary-blue inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-white hover:border-[#19140035]"
+                                href={route('loginStudent')}
+                                className="bg-primary-red inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-white hover:border-[#19140035]"
                             >
                                 Logga in
                             </Link>
-
                             {/*
                                 <Link
                                 href={route('register')}
@@ -42,31 +41,30 @@ export default function Welcome() {
                         </>
                     )}
                 </nav>
-                <div className="bg-primary-blue py-10">
+                <div className="bg-primary-red py-10">
                     <h1 className="text-[96px] text-white">
                         LIA <br /> EVENT 2025
                         <br /> YRGO
                     </h1>
                 </div>
-                
+
                 <div className='py-10 mx-auto text-center flex gap-10 justify-center bg-white'>
-                    <div className='bg-primary-blue py-2 px-2 rounded-xl'>
+                    <div className='bg-primary-red py-2 px-2 rounded-xl'>
                     <Link
                         href={route('home')}
-                        className="bg-white inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-primary-blue hover:border-[#19140035]"
+                        className=" inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-white hover:border-[#19140035]"
                     >
                         Företag
                         </Link>
 
                     <Link
                         href={route('homeStudent')}
-                        className=" inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-white hover:border-[#19140035]"
+                        className="bg-white inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-primary-red hover:border-[#19140035]"
                     >
                     Elev
                     </Link>
                     </div>
                 </div>
-             
             </header>
         </>
     );

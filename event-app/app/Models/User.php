@@ -47,8 +47,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function company()
+    public function isStudent()
     {
-        return $this->hasOne(Company::class);
+        return $this->role === 'student';
+    }
+
+    public function isCompany()
+    {
+        return $this->role === "company";
     }
 }

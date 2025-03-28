@@ -21,7 +21,7 @@ interface LoginProps {
     canResetPassword: boolean;
 }
 
-export default function Login({ status, canResetPassword }: LoginProps) {
+export default function LoginStudent({ status, canResetPassword }: LoginProps) {
     const { data, setData, post, processing, errors, reset } = useForm<Required<LoginForm>>({
         email: '',
         password: '',
@@ -36,7 +36,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
     };
 
     return (
-        <AuthLayout title="Log in to your company account " description="Enter your email and password below to log in">
+        <AuthLayout title="Log in to your student account " description="Enter your email and password below to log in">
             <Head title="Log in" />
 
             <form className="flex flex-col gap-6" onSubmit={submit}>
@@ -97,16 +97,16 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                 </div>
 
                 <div className="text-muted-foreground text-center text-sm">
-                    Don't have an company account?{' '}
-                    <TextLink href={route('register')} tabIndex={5}>
+                    Don't have an student account?{' '}
+                    <TextLink href={route('register.student')} tabIndex={5}>
                         Sign up
                     </TextLink>
                 </div>
 
                 <div className="text-muted-foreground text-center text-sm">
-                    Är du student?{' '}
-                    <TextLink href={route('loginStudent')} tabIndex={5}>
-                        Logga in som student här
+                    Är du företag?{' '}
+                    <TextLink href={route('login')} tabIndex={5}>
+                        Logga in som företag här
                     </TextLink>
                 </div>
             </form>

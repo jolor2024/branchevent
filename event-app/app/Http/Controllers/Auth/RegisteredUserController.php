@@ -16,13 +16,20 @@ use Inertia\Response;
 class RegisteredUserController extends Controller
 {
     /**
-     * Show the registration page.
+     * Show the company registration page.
      */
     public function create(): Response
     {
         return Inertia::render('auth/register');
     }
 
+    /**
+     * Show the student registration page.
+     */
+    public function createStudent(): Response
+    {
+        return Inertia::render('auth/registerStudent');
+    }
     /**
      * Handle an incoming registration request.
      *
@@ -32,7 +39,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

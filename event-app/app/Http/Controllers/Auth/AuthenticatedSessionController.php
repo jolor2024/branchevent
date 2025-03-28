@@ -14,11 +14,22 @@ use Inertia\Response;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Show the login page.
+     * Show the company login page.
      */
     public function create(Request $request): Response
     {
         return Inertia::render('auth/login', [
+            'canResetPassword' => Route::has('password.request'),
+            'status' => $request->session()->get('status'),
+        ]);
+    }
+
+    /**
+     * Show the student login page.
+     */
+    public function createStudent(Request $request): Response
+    {
+        return Inertia::render('auth/loginStudent', [
             'canResetPassword' => Route::has('password.request'),
             'status' => $request->session()->get('status'),
         ]);
