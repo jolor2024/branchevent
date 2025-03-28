@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\GdprConsentController;
+
+Route::post('/gdpr/accept', [GdprConsentController::class, 'acceptConsent'])->name('gdpr.accept');
+
+Route::post('/gdpr/revoke', [GdprConsentController::class, 'revokeConsent'])->name('gdpr.revoke');
 
 Route::get('/', function () {
     return Inertia::render('welcome');
