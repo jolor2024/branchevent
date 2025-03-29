@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('gdpr_consent', function (Blueprint $table) {
             $table->id();
-            $table->index('user_id'); // Índice para la clave foránea
+            $table->index('user_id'); // Foreign key index
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');  // Clave foránea a la tabla users
-            $table->boolean('consent_given');  // ¿Ha dado el consentimiento? (true o false)
-            $table->text('consent_details')->nullable();  // Detalles opcionales sobre el consentimiento dado
-            $table->timestamp('consent_given_at')->useCurrent();  // Fecha y hora en que se dio el consentimiento
-            $table->timestamp('consent_revoked_at')->nullable();  // Fecha y hora en que se revocó el consentimiento (si aplica)
+            $table->unsignedBigInteger('user_id');  // Foreign key table users
+            $table->boolean('consent_given');  // Consent given (true o false)
+            $table->text('consent_details')->nullable();  // Optional details
+            $table->timestamp('consent_given_at')->useCurrent(); 
+            $table->timestamp('consent_revoked_at')->nullable();  
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

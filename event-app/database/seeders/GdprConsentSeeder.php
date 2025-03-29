@@ -15,7 +15,7 @@ class GdprConsentSeeder extends Seeder
      */
     public function run(): void
     {
-        // Obtener algunos usuarios para asociar el consentimiento
+        // Get all users for consent
         $users = User::all();
 
         if ($users->isEmpty()) {
@@ -23,7 +23,7 @@ class GdprConsentSeeder extends Seeder
             return;
         }
 
-        // Insertar consentimientos para cada usuario
+        //  Consent for all users
         foreach ($users as $user) {
             DB::table('gdpr_consent')->insert([
                 'user_id' => $user->id,

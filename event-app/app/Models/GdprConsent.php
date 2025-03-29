@@ -10,7 +10,7 @@ class GdprConsent extends Model
 {
     use HasFactory;
 
-    protected $table = 'gdpr_consent';  // Define la tabla asociada a este modelo
+    protected $table = 'gdpr_consent';  // Define the table associated with this model
 
     protected $fillable = [
         'user_id',
@@ -20,7 +20,7 @@ class GdprConsent extends Model
         'consent_revoked_at',
     ];
 
-    // Relación con el modelo User (uno a muchos)
+    // Relationship with the User model (one to many)
     public function user()
     {
         return $this->belongsTo(User::class);
