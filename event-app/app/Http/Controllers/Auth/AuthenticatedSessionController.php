@@ -25,17 +25,6 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Show the student login page.
-     */
-    public function createStudent(Request $request): Response
-    {
-        return Inertia::render('auth/loginStudent', [
-            'canResetPassword' => Route::has('password.request'),
-            'status' => $request->session()->get('status'),
-        ]);
-    }
-
-    /**
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse

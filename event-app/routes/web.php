@@ -20,14 +20,11 @@ Route::get('/student', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-        /*
         if (Auth::user()->isStudent()) {
             return Inertia::render('studentDashboard');
         } else if (Auth::user()->isCompany()) {
             return Inertia::render('companyDasboard');
         }
-            */
     })->name('dashboard');
 });
 

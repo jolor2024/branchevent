@@ -15,32 +15,12 @@ export default function Welcome() {
                     <a href="" className="w-44">
                         <img src="/yrgologo.svg" />
                     </a>
-                    {auth.user ? (
-                        <Link
-                            href={route('dashboard')}
-                            className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A]"
-                        >
-                            Dashboard
-                        </Link>
-                    ) : (
-                        <>
-                            <Link
-                                href={route('login')}
-                                className="bg-primary-blue inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-white hover:border-[#19140035]"
-                            >
-                                Logga in
-                            </Link>
-
-                            {/*
-                                <Link
-                                href={route('register')}
-                                className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] "
-                            >
-                                Register
-                            </Link>
-                            */}
-                        </>
-                    )}
+                    <Link
+                        href={route('login')}
+                        className="bg-primary-blue inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-white hover:border-[#19140035]"
+                    >
+                        Logga in
+                    </Link>
                 </nav>
                 <div className="bg-primary-blue py-10">
                     <h1 className="text-[96px] text-white">
@@ -48,26 +28,17 @@ export default function Welcome() {
                         <br /> YRGO
                     </h1>
                 </div>
-                
-                <div className='py-10 mx-auto text-center flex gap-10 justify-center bg-white'>
-                    <div className='bg-primary-blue py-2 px-2 rounded-xl'>
-                    <Link
-                        href={route('home')}
-                        className="bg-white inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-primary-blue hover:border-[#19140035]"
-                    >
-                        Företag
-                        </Link>
-
-                    <Link
-                        href={route('homeStudent')}
-                        className=" inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-white hover:border-[#19140035]"
-                    >
-                    Elev
-                    </Link>
-                    </div>
-                </div>
+          
              
             </header>
+            <main>
+            <Link
+                href={route('register')}
+                className="bg-primary-blue inline-block rounded-lg border border-transparent px-5 py-1.5 text-sm leading-normal text-white hover:border-[#19140035]"
+            >
+                Registrera dig
+            </Link>
+            </main>
         </>
     );
 }
