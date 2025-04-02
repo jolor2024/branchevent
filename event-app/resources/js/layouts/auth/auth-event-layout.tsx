@@ -9,7 +9,7 @@ interface AuthLayoutProps {
 
 export default function AuthEventLayout({ children, title, description }: PropsWithChildren<AuthLayoutProps>) {
     return (
-        <div className='px-6'>
+        <div className='px-6 pb-6'>
             {children}
         </div>
     );

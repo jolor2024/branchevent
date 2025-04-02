@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Toggle } from '@/components/ui/toggle';
 
+import FooterLayout from '../../layouts/app/app-footer-layout';
 
 
 import { ArrowLeft } from "lucide-react";
@@ -57,6 +58,7 @@ export default function Register() {
     }
 
     return (
+        <>
         <AuthLayout title="Skapa ett företagskonto" description="Enter your details below to create your account">
             <Head title="Register" />
             <div className='pt-10'>
@@ -73,10 +75,54 @@ export default function Register() {
                 </a>
             )}
             </div>
-            <h1 className='text-4xl font-thin my-4'>SKAPA ETT FÖRETAGSKONTO</h1>
+            <h1 className='text-4xl font-thin my-4 p-0 mb-0'>SKAPA ETT FÖRETAGSKONTO</h1>
+
+            <div className='flex justify-between mt-16 mb-8'>
+                <div className='justify-center text-center'>
+                    <div className={`mx-2 flex justify-center w-8 h-8 rounded-full text-center ${
+                        currentStep >= 1 ? "bg-primary-blue" : "bg-[#DBDBDB]"
+                    }`}>
+                        <span className={` self-center ${
+                        currentStep >= 1 ? "text-white" : "text-"
+                    }`}>1</span>
+                    </div>
+
+                    <span>Info</span>
+                </div>
+             
+
+                <hr className={`border-0 h-[2px] w-full mt-4  ${ currentStep >= 1 ? "bg-primary-blue" : "bg-[#DBDBDB]"} `}/>
+              
+                <div className='justify-center text-center'>
+                    <div className={`mx-2 flex justify-center w-8 h-8 rounded-full text-center ${
+                        currentStep >= 2 ? "bg-primary-blue" : "bg-[#DBDBDB]"
+                    }`}>
+                        <span className={` self-center ${
+                        currentStep >= 2 ? "text-white" : "text-[#000]"
+                        }`}>2</span>
+
+                    </div>
+                    <span>Detaljer</span>
+                </div>
+         
+
+                <hr className={`border-0 h-[2px] w-full mt-4  ${ currentStep >= 3 ? "bg-primary-blue" : "bg-[#DBDBDB]"} `}/>
+
+                <div className='justify-center text-center'>
+                    <div className={`mx-2 flex justify-center w-8 h-8 rounded-full text-center ${
+                        currentStep >= 3 ? "bg-primary-blue" : "bg-[#DBDBDB]"
+                    }`}>
+                        <span className={` self-center ${
+                        currentStep >= 3 ? "text-white" : "text-[#000]"
+                        }`}>3</span>
+
+                    </div>
+                    <span>Klar!</span>
+                </div>
+            </div>
 
             <form className="flex flex-col gap-6" onSubmit={submit}>
-                <div className="grid gap-8">
+                <div className="flex flex-col gap-8">
                 
                     {currentStep === 1 && (
                     <>
@@ -163,7 +209,7 @@ export default function Register() {
                         </div>
                     </div>
 
-                    <Button type="button" onClick={goNext} className='bg-primary-blue'>
+                    <Button type="button" onClick={goNext} className='bg-primary-blue w-[50%] self-end'>
                     GÅ VIDARE
                     <ArrowRight/>
                     </Button>
@@ -235,7 +281,7 @@ export default function Register() {
                         </div>
 
         
-                        <Button type="submit" className="bg-primary-blue" tabIndex={5} disabled={processing}>
+                        <Button type="submit" className="bg-primary-blue self-end" tabIndex={5} disabled={processing}>
                             {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
                             SKAPA KONTO
                             <ArrowRight/>
@@ -246,5 +292,7 @@ export default function Register() {
 
             </form>
         </AuthLayout>
+        <FooterLayout></FooterLayout>
+        </>
     );
 }
