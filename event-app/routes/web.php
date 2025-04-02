@@ -18,7 +18,6 @@ Route::get('/student', function () {
 })->name('homeStudent');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-
     Route::get('dashboard', function () {
         if (Auth::user()->isStudent()) {
             return Inertia::render('studentDashboard');
