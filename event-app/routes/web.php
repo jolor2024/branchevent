@@ -22,7 +22,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         if (Auth::user()->isStudent()) {
             return Inertia::render('studentDashboard');
         } else if (Auth::user()->isCompany()) {
-            return Inertia::render('companyDasboard');
+            return Inertia::render('companyDashboard');
         }
     })->name('dashboard');
 });
