@@ -35,9 +35,10 @@ export default function Register() {
         <AuthLayout title="Create a student account" description="Enter your details below to create your account">
             <Head title="Register" />
             <form className="flex flex-col gap-6" onSubmit={submit}>
-                <div className="grid gap-6">
-                    <div className="grid gap-2">
-                        <Label htmlFor="name">Name</Label>
+                <div className="grid gap-8">
+
+                    <div className="grid gap-4">
+                        <Label htmlFor="name" className='text-sm'>NAMN</Label>
                         <Input
                             id="name"
                             type="text"
@@ -53,8 +54,8 @@ export default function Register() {
                         <InputError message={errors.name} className="mt-2" />
                     </div>
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="email">Email address</Label>
+                    <div className="grid gap-4">
+                        <Label htmlFor="email">eMAI</Label>
                         <Input
                             id="email"
                             type="email"
@@ -69,7 +70,7 @@ export default function Register() {
                         <InputError message={errors.email} />
                     </div>
 
-                    <div className="grid gap-2">
+                    <div className="grid gap-4">
                         <Label htmlFor="password">Password</Label>
                         <Input
                             id="password"
@@ -85,7 +86,7 @@ export default function Register() {
                         <InputError message={errors.password} />
                     </div>
 
-                    <div className="grid gap-2">
+                    <div className="grid gap-4">
                         <Label htmlFor="password_confirmation">Confirm password</Label>
                         <Input
                             id="password_confirmation"
@@ -108,9 +109,9 @@ export default function Register() {
                 </div>
 
                 <div className="text-muted-foreground text-center text-sm">
-                    Already have an account?{' '}
+                    Har du redan ett konto?{' '}
                     <TextLink href={route('login')} tabIndex={6}>
-                        Log in
+                        Logga in
                     </TextLink>
                 </div>
             </form>
