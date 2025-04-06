@@ -3,11 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\GdprConsentController;
-
-Route::post('/gdpr/accept', [GdprConsentController::class, 'acceptConsent'])->name('gdpr.accept');
-
-Route::post('/gdpr/revoke', [GdprConsentController::class, 'revokeConsent'])->name('gdpr.revoke');
+use App\Http\Controllers\StudentDashboardController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -17,10 +13,11 @@ Route::get('/student', function () {
     return Inertia::render('welcomeStudent');
 })->name('homeStudent');
 
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         if (Auth::user()->isStudent()) {
-            return Inertia::render('studentDashboard');
+            return app(StudentDashboardController::class)->index();
         } else if (Auth::user()->isCompany()) {
             return Inertia::render('companyDashboard');
         }

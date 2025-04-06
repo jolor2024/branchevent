@@ -28,6 +28,7 @@ type RegisterForm = {
     email: string;
     password: string;
     password_confirmation: string;
+    working_roles: string[]
 };
 
 export default function Register() {
@@ -38,6 +39,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        working_roles: []
     });
 
     const submit: FormEventHandler = (e) => {
@@ -45,6 +47,11 @@ export default function Register() {
         post(route('register'), {
             onFinish: () => reset('password', 'password_confirmation'),
         });
+    };
+
+
+    const handleToggleChange = (selectedRoles: string[]) => {
+        setData('working_roles', selectedRoles);
     };
 
     const [currentStep, setCurrentStep] = useState(1); 
@@ -254,24 +261,27 @@ export default function Register() {
 
                         <div className="grid gap-2">
                         <Label htmlFor="studentRoles" className='text-sm'>VILKA YRKESROLLER SÖKER NI?</Label>
-                        <ToggleGroup variant="default" size="sm" type="multiple" className="flex flex-wrap gap-4">
+                        <ToggleGroup 
+                            value={data.working_roles}
+                            onValueChange={handleToggleChange}
+                            variant="default" size="sm" type="multiple" className="flex flex-wrap gap-4">
                             <ToggleGroupItem
                                 variant="outline"
-                                value="1"
+                                value="ux"
                                 className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >
                                 UX
                             </ToggleGroupItem>
                             <ToggleGroupItem
                                 variant="outline"
-                                value="2"
+                                value="webbutveckling"
                                 className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >
                                 Webbutveckling
                             </ToggleGroupItem>
                             <ToggleGroupItem
                                 variant="outline"
-                                value="3"
+                                value="marketing"
                                 className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >
                                 Marknadsföring
