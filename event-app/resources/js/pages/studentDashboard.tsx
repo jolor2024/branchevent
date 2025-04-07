@@ -16,8 +16,12 @@ export default function Dashboard({companies}) {
     return (
         <div>
             <Head title="Student Dashboard" />
-            <header className='flex px-2 justify-end py-2'>
-            <nav className="flex items-center justify-between gap-4 px-6 py-4">
+            <header className='py-4'>
+            <nav className="flex items-center justify-between gap-4 px-6">
+            <a href="">
+                    <img src="/assets/logored.svg" alt="Logo" className="w-[160px] max-h-[48px]" />
+            </a>
+            
             <Link
                 method='get'
                 href={route('profile.edit')}    
@@ -26,15 +30,24 @@ export default function Dashboard({companies}) {
             <span>Konto</span>
             <CircleUserRound />
             </Link>
-
             </nav>
-           
             </header>
-            <main className="px-5">
-                <h1 className='text-primary-red text-5xl font-light'>HITTA DIN FRAMTIDA PRAKTIKPLATS</h1>
-                <img src="" alt="" className='h-[210px] w-full bg-amber-300 mt-6' />
-                <div className='grid md:grid-cols-2 gap-4 py-4'>
+            <main className="px-5 lg:px-0 pt-6 lg:pt-0">
+                <div className='hidden lg:block py-30 bg-primary-red'>
+                    <div className='max-w-[1200px] mx-auto'>
+                        <h1 className='text-white text-5xl font-light w-[40%]'>HITTA DIN FRAMTIDA PRAKTIKPLATS</h1>
+                    </div>
+                </div>
 
+                <div className='lg:hidden px-5'>
+                    <h1 className='text-primary-red text-5xl font-light'>HITTA DIN FRAMTIDA PRAKTIKPLATS</h1>
+                    <img src="" alt="" className='h-[210px] w-full bg-amber-300 mt-6' />
+                </div>
+                
+
+
+
+                <div className='grid md:grid-col-2 lg:grid-cols-3 gap-4 py-4 max-w-[1200px] mx-auto'>
                 {companies.map(company => {
                     const rolesArray = company.working_roles ? JSON.parse(company.working_roles) : [];
                     return (
