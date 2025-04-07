@@ -33,7 +33,6 @@ export default function Dashboard({companies}) {
             <main className="px-5">
                 <h1 className='text-primary-red text-5xl font-light'>HITTA DIN FRAMTIDA PRAKTIKPLATS</h1>
                 <img src="" alt="" className='h-[210px] w-full bg-amber-300 mt-6' />
-                <div className='py-4'>Filtrera</div>
                 <div className='grid md:grid-cols-2 gap-4 py-4'>
 
                 {companies.map(company => {
@@ -57,7 +56,7 @@ export default function Dashboard({companies}) {
 
                 </div>
             </main>
-            <AppFooterLayout/>
+            <AppFooterLayout isCompany={false}/>
         </div>
     );
 }

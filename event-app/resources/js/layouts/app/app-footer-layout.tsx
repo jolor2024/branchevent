@@ -1,21 +1,18 @@
 
-export default function AppFooterLayout() {
-        return (
-            <footer id= "footer"className="bg-primary-blue text-white py-6">
-            <div className="container mx-auto px-4">
-                <div className="flex justify-between items-center">
-                    <a href="" className="w-44">
-                        <img src="/assets/loggo_white.svg" alt="Logo" />
-                    </a>
-                    <div className="text-right text-sm">
-                        <p className="mb-4">
-                            23 april<br />
-                            kl 13-15<br />
-                            Lindholmspiren 3
-                        </p>
-                    </div>
+export default function AppFooterLayout({isCompany}) {
+    return (
+    <footer id="footer" className={` text-white ${isCompany ? 'bg-primary-blue' : 'bg-red-500'}`}>
+        <div className="px-6 py-8">
+            <div className="flex justify-between items-center">
+                <a href="">
+                    <img src="/assets/loggo_white.svg" alt="Logo" className="w-[120px] lg:w-[200px]" />
+                </a>
+                <div className="text-right flex flex-col text-lg">
+                    <span> 23 april</span>
+                    <span>kl 13-15</span>
+                    <span>Lindholmspiren 3</span>
                 </div>
             </div>
-        </footer>
-        )
-        }
+        </div>
+    </footer>
+)}
