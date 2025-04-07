@@ -33,15 +33,20 @@ export default function Dashboard({companies}) {
             </nav>
             </header>
             <main className="px-5 lg:px-0 pt-6 lg:pt-0">
-                <div className='hidden lg:block py-30 bg-primary-red'>
-                    <div className='max-w-[1200px] mx-auto'>
-                        <h1 className='text-white text-5xl font-light w-[40%]'>HITTA DIN FRAMTIDA PRAKTIKPLATS</h1>
-                    </div>
+            <div className='hidden lg:block py-30 relative'>
+                <img 
+                    src="/assets/herostudent.png" 
+                    alt="Background" 
+                    className='absolute top-0 left-0 w-full h-full object-cover object-[50%_10%] filter grayscale brightness-75' 
+                />
+                <div className='max-w-[1200px] mx-auto relative z-10 '>
+                    <h1 className='text-white text-5xl font-light w-[40%]'>HITTA DIN FRAMTIDA PRAKTIKPLATS</h1>
                 </div>
+            </div>
 
                 <div className='lg:hidden px-5'>
                     <h1 className='text-primary-red text-5xl font-light'>HITTA DIN FRAMTIDA PRAKTIKPLATS</h1>
-                    <img src="" alt="" className='h-[210px] w-full bg-amber-300 mt-6' />
+                    <img src="/assets/herostudent.png" alt="" className=' w-full mt-6  filter grayscale brightness-75' />
                 </div>
                 
 
