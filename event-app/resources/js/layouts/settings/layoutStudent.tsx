@@ -20,11 +20,11 @@ export default function StudentSettingsLayout({ children }: PropsWithChildren) {
     return (
         <div className="px-4">
             <div className='pt-10'>
-                <a href={"/dashboard"} >
+                <a href={"/settings"} >
                 <ArrowLeft />
                 </a>
             </div>
-            <h1 className='text-[48px] font-thin py-4'>REDIGERA KONTO</h1>
+            
 
             <div className="flex flex-col space-y-8 lg:flex-row lg:space-y-0 lg:space-x-12">
 

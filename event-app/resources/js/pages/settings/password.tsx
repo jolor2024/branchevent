@@ -10,13 +10,8 @@ import HeadingSmall from '@/components/heading-small';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import AppFooterLayout from '../../layouts/app/app-footer-layout';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Password settings',
-        href: '/settings/password',
-    },
-];
 
 export default function Password() {
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -49,14 +44,14 @@ export default function Password() {
     };
 
     return (
+        <>
         <SettingsLayout>
         <Head title="Profile settings" />
+            <h1 className='text-[48px] font-thin py-4'>ÄNDRA LÖSENORD</h1>
             <div className="space-y-6">
-                <HeadingSmall title="Update password" description="Ensure your account is using a long, random password to stay secure" />
-
                 <form onSubmit={updatePassword} className="space-y-6">
                     <div className="grid gap-2">
-                        <Label htmlFor="current_password">Current password</Label>
+                        <Label htmlFor="current_password"  className='text-sm'>NUVARANDE LÖSENORD</Label>
 
                         <Input
                             id="current_password"
@@ -64,16 +59,16 @@ export default function Password() {
                             value={data.current_password}
                             onChange={(e) => setData('current_password', e.target.value)}
                             type="password"
-                            className="mt-1 block w-full"
+                            className="mt-1 block w-full border-1 border-black rounded-4xl"
                             autoComplete="current-password"
-                            placeholder="Current password"
+                            placeholder="Nuvarande lösenord"
                         />
 
                         <InputError message={errors.current_password} />
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="password">New password</Label>
+                        <Label htmlFor="password"  className='text-sm'>NYTT LÖSENORD</Label>
 
                         <Input
                             id="password"
@@ -81,32 +76,32 @@ export default function Password() {
                             value={data.password}
                             onChange={(e) => setData('password', e.target.value)}
                             type="password"
-                            className="mt-1 block w-full"
+                            className="mt-1 block w-full border-1 border-black rounded-4xl"
                             autoComplete="new-password"
-                            placeholder="New password"
+                            placeholder="Nytt lösenord"
                         />
 
                         <InputError message={errors.password} />
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="password_confirmation">Confirm password</Label>
+                        <Label htmlFor="password_confirmation"  className='text-sm'>BEKFRÄFTA LÖSENORD</Label>
 
                         <Input
                             id="password_confirmation"
                             value={data.password_confirmation}
                             onChange={(e) => setData('password_confirmation', e.target.value)}
                             type="password"
-                            className="mt-1 block w-full"
+                            className="mt-1 block w-full border-1 border-black rounded-4xl"
                             autoComplete="new-password"
-                            placeholder="Confirm password"
+                            placeholder="Bekräfta lösenord"
                         />
 
                         <InputError message={errors.password_confirmation} />
                     </div>
 
-                    <div className="flex items-center gap-4">
-                        <Button disabled={processing}>Save password</Button>
+                    <div className="flex items-center gap-4 justify-end pb-4">
+                        <Button disabled={processing} className='bg-primary-red'>SPARA</Button>
 
                         <Transition
                             show={recentlySuccessful}
@@ -121,5 +116,7 @@ export default function Password() {
                 </form>
             </div>
         </SettingsLayout>
+        <AppFooterLayout></AppFooterLayout>
+        </>
     );
 }

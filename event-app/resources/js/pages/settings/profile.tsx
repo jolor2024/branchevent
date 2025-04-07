@@ -13,12 +13,6 @@ import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layoutStudent';
 import FooterLayout from '../../layouts/app/app-footer-layout';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'User settings',
-        href: '/settings/profile',
-    },
-];
 
 type ProfileForm = {
     name: string;
@@ -46,13 +40,13 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
         <SettingsLayout>
         <Head title="User settings" />
             <div className="space-y-6">
+            <h1 className='text-[48px] font-thin py-4'>REDIGERA KONTO</h1>
                 <form onSubmit={submit} className="space-y-6">
                     <div className="grid gap-2">
                         <Label htmlFor="name" className='text-sm' >NAMN</Label>
-
                         <Input
                             id="name"
-                            className="mt-1 block w-full"
+                            className="mt-1 block w-full border-1 border-black rounded-4xl"
                             value={data.name}
                             onChange={(e) => setData('name', e.target.value)}
                             required
@@ -69,7 +63,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                         <Input
                             id="email"
                             type="email"
-                            className="mt-1 block w-full"
+                            className="mt-1 block w-full border-1 border-black rounded-4xl"
                             value={data.email}
                             onChange={(e) => setData('email', e.target.value)}
                             required
