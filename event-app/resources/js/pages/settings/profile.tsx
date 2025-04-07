@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layoutStudent';
+import FooterLayout from '../../layouts/app/app-footer-layout';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -41,14 +42,13 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
     };
 
     return (
+        <>
         <SettingsLayout>
         <Head title="User settings" />
             <div className="space-y-6">
-                <HeadingSmall title="Profile information" description="Update your name and email address" />
-
                 <form onSubmit={submit} className="space-y-6">
                     <div className="grid gap-2">
-                        <Label htmlFor="name">Name</Label>
+                        <Label htmlFor="name" className='text-sm' >NAMN</Label>
 
                         <Input
                             id="name"
@@ -64,7 +64,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Email address</Label>
+                        <Label htmlFor="email" className='text-sm'>EMAIL</Label>
 
                         <Input
                             id="email"
@@ -102,8 +102,15 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                         </div>
                     )}
 
-                    <div className="flex items-center gap-4">
-                        <Button disabled={processing}>Save</Button>
+                    <div className="flex items-center gap-4 justify-between">
+                    <Link
+                        href={route('logout')}
+                        method="post"
+                        className="text-white bg-primary-red inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-9 px-4 py-2 has-[>svg]:px-3"
+                    >
+                        LOGGA UT
+                    </Link>
+                        <Button disabled={processing} className='bg-primary-red'>SPARA</Button>
 
                         <Transition
                             show={recentlySuccessful}
@@ -112,13 +119,24 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                             leave="transition ease-in-out"
                             leaveTo="opacity-0"
                         >
-                            <p className="text-sm text-neutral-600">Saved</p>
+                            <p className="text-sm text-neutral-600">SPARA</p>
                         </Transition>
                     </div>
                 </form>
             </div>
 
             <DeleteUser />
+            <Link
+            href={route('password.edit')}
+            method="get"
+            as="button"
+            className="underline"
+        >
+            Ändra lösenord
+        </Link>
         </SettingsLayout>
+        
+        <FooterLayout></FooterLayout>
+        </>
     );
 }

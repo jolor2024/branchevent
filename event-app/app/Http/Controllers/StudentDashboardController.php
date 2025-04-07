@@ -9,7 +9,6 @@ use App\Models\User;
 
 class StudentDashboardController extends Controller
 {
-    //
     public function index()
     {
         $companies = Company::all();

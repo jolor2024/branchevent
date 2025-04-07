@@ -3,6 +3,7 @@ import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import AppFooterLayout from '@/layouts/app/app-footer-layout';
+import { CircleUserRound } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -15,20 +16,19 @@ export default function Dashboard({companies}) {
     return (
         <div>
             <Head title="Student Dashboard" />
-            <header className='flex justify-between px-2 py-2'>
+            <header className='flex px-2 justify-end py-2'>
+            <nav className="flex items-center justify-between gap-4 px-6 py-4">
             <Link
-                method='post'
-                href={route('logout')}    
+                method='get'
+                href={route('profile.edit')}    
+                className='flex gap-2'
             >
-            Logga ut
+            <span>Konto</span>
+            <CircleUserRound />
             </Link>
 
-            <Link
-                method="get"
-                href={"/settings"}
-            >
-                Konto
-            </Link>
+            </nav>
+           
             </header>
             <main className="px-5">
                 <h1 className='text-primary-red text-5xl font-light'>HITTA DIN FRAMTIDA PRAKTIKPLATS</h1>
