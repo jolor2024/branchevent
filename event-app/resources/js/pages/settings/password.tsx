@@ -45,7 +45,7 @@ export default function Password() {
     };
 
     return (
-        <OuterLayout>
+        <OuterLayout >
 <SettingsLayout>
         <Head title="Profile settings" />
             <h1 className='text-[48px] font-thin py-4'>ÄNDRA LÖSENORD</h1>

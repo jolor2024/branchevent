@@ -21,7 +21,7 @@ export default function StudentSettingsLayout({ children }: PropsWithChildren) {
     return (
         <>
             <div className='pt-5 pl-5'>
-                <a href={"/settings"} >
+                <a href={"/dashboard"} >
                 <ArrowLeft />
                 </a>
             </div>

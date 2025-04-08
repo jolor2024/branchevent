@@ -30,6 +30,7 @@ export default function Dashboard({companies}) {
             <span>Konto</span>
             <CircleUserRound />
             </Link>
+            
             </nav>
             </header>
             <main className="px-5 lg:px-0 pt-6 lg:pt-0">
