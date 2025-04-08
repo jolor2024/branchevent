@@ -6,6 +6,7 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { ArrowLeft } from 'lucide-react';
 import { type PropsWithChildren } from 'react';
+import FooterLayout from '../../layouts/app/app-footer-layout';
 
 
 
@@ -18,20 +19,20 @@ export default function StudentSettingsLayout({ children }: PropsWithChildren) {
     const currentPath = window.location.pathname;
 
     return (
-        <div className="px-4">
-            <div className='pt-10'>
+        <>
+            <div className='pt-5 pl-5'>
                 <a href={"/settings"} >
                 <ArrowLeft />
                 </a>
             </div>
-            
 
-            <div className="flex flex-col space-y-8 lg:flex-row lg:space-y-0 lg:space-x-12">
-
-                <div className="flex-1 md:max-w-2xl">
-                    <section className="max-w-xl space-y-12">{children}</section>
+            <div className='flex flex-row lg:px-20 gap-10 items-center justify-center'>
+                <section className="max-w-xl">{children}</section>
+                <div className='hidden lg:block'>
+                    <img src="/assets/herostudent.png" alt="Logo" className="w-[500px] max-h-[600px]" />
                 </div>
             </div>
-        </div>
+        <FooterLayout isCompany={false}></FooterLayout>
+        </>
     );
 }

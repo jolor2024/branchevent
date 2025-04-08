@@ -1,7 +1,7 @@
 
 export default function AppFooterLayout({isCompany}) {
     return (
-    <footer id="footer" className={` text-white ${isCompany ? 'bg-primary-blue' : 'bg-red-500'}`}>
+    <footer id="footer" className={`lg:hidden text-white ${isCompany ? 'bg-primary-blue' : 'bg-red-500'}`}>
         <div className="px-6 py-8">
             <div className="flex justify-between items-center">
                 <a href="">

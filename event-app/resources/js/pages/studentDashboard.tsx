@@ -14,7 +14,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 export default function Dashboard({companies}) {
     return (
-        <div>
+        <div className='bg-white'>
             <Head title="Student Dashboard" />
             <header className='py-4'>
             <nav className="flex items-center justify-between gap-4 px-6">
@@ -39,7 +39,7 @@ export default function Dashboard({companies}) {
                     alt="Background" 
                     className='absolute top-0 left-0 w-full h-full object-cover object-[50%_10%] filter grayscale brightness-75' 
                 />
-                <div className='max-w-[1200px] mx-auto relative z-10 '>
+                <div className='max-w-[1200px] mx-auto relative z-10 px-5'>
                     <h1 className='text-white text-5xl font-light w-[40%]'>HITTA DIN FRAMTIDA PRAKTIKPLATS</h1>
                 </div>
             </div>
@@ -52,7 +52,7 @@ export default function Dashboard({companies}) {
 
 
 
-                <div className='grid md:grid-col-2 lg:grid-cols-3 gap-4 py-4 max-w-[1200px] mx-auto'>
+                <div className='grid md:grid-col-2 lg:grid-cols-3 gap-4 py-4 max-w-[1200px] mx-auto px-5'>
                 {companies.map(company => {
                     const rolesArray = company.working_roles ? JSON.parse(company.working_roles) : [];
                     return (
