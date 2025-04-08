@@ -1,4 +1,3 @@
-import AppLayout from '@/layouts/app-layout';
 import AppFooterLayout from '@/layouts/app/app-footer-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
@@ -13,7 +12,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 export default function Dashboard() {
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <div>
             <Head title="Company Dashboard" />
 
             <nav className="flex items-center justify-between gap-4">
@@ -30,21 +29,39 @@ export default function Dashboard() {
                 </Link>
             </nav>
 
-            <main>
-                <div className="">
-                    <h2 className="text-center font-sans text-[8px] leading-[8px] font-normal tracking-[0px]">Polestar</h2>
-                </div>
+            <main className="mr-[24px] ml-[24px]">
+                <form>
+                    <div className="">
+                        <h2 className="leading-2xl text-center font-sans text-3xl font-normal tracking-[0px]">Polestar</h2>
+                    </div>
 
-                <p className="font-sans text-[4px] leading-[5.2px] font-normal tracking-[0px]">Jobb-beskrivning:</p>
-                <textarea className="top-[35px] h-[141px] w-[345px] rounded-[16px] border-[1px]"></textarea>
+                    <div className="">
+                        <label htmlFor="description" className="text-1xl font-sans leading-[5.2px] font-normal tracking-[0px]">
+                            Jobb-beskrivning:
+                        </label>
 
-                <hr></hr>
+                        <textarea
+                            id="description"
+                            name="description"
+                            className="top-[35px] mt-[10px] mb-[24px] h-[141px] w-full rounded-[16px] border-[1px]"
+                        ></textarea>
+                    </div>
 
-                <h3 className="font-sans text-[4px] leading-[5.2px] font-normal tracking-[0px]">Vilka yrkesroller söker ni?</h3>
-                <hr></hr>
+                    <hr className=""></hr>
+
+                    <div>
+                        <h3 className="text-1xl mt-[24px] mb-[24px] font-sans leading-[5.2px] font-normal tracking-[0px]">
+                            VILKA YRKESROLLER SÖKER NI?
+                        </h3>
+                    </div>
+
+                    <hr></hr>
+
+                    <button>SPARA ÄNDRINGAR</button>
+                </form>
             </main>
 
-            <AppFooterLayout></AppFooterLayout>
-        </AppLayout>
+            <AppFooterLayout isCompany={true}></AppFooterLayout>
+        </div>
     );
 }
