@@ -9,6 +9,10 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
+import OuterLayout from '@/layouts/app/app-outer-layout';
+import FooterLayout from '../../layouts/app/app-footer-layout';
+import { ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 type LoginForm = {
     email: string;
@@ -36,82 +40,76 @@ export default function Login({ status, canResetPassword }: LoginProps) {
     };
 
     return (
-        <AuthLayout title="Log in to your account " description="Enter your email and password below to log in">
-            <Head title="Log in" />
+        <OuterLayout>
+            <AuthLayout title="Log in to your account " description="Enter your email and password below to log in">
+                <Head title="Log in" />
+                <div className='pt-10 bg-white'>
+                     <a href={"/"} >
+                    <ArrowLeft />
+                    </a>
+                    <h1 className='text-4xl font-thin my-4 p-0 mb-16'>Logga in</h1>
+                    <form className="flex flex-col gap-6" onSubmit={submit}>
+                        <div className="flex flex-col gap-8">
+                            <div className="grid gap-4">
+                                <Label htmlFor="email" className='text-sm'>EMAIL</Label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    required
+                                    autoFocus
+                                    tabIndex={1}
+                                    autoComplete="email"
+                                    value={data.email}
+                                    onChange={(e) => setData('email', e.target.value)}
+                                    placeholder="email@example.com"
+                                    className='border-1 border-black rounded-4xl'
+                                />
+                                <InputError message={errors.email} />
+                            </div>
 
-            <form className="flex flex-col gap-6" onSubmit={submit}>
-                <div className="grid gap-6">
-                    <div className="grid gap-2">
-                        <Label htmlFor="email">Email address</Label>
-                        <Input
-                            id="email"
-                            type="email"
-                            required
-                            autoFocus
-                            tabIndex={1}
-                            autoComplete="email"
-                            value={data.email}
-                            onChange={(e) => setData('email', e.target.value)}
-                            placeholder="email@example.com"
-                        />
-                        <InputError message={errors.email} />
-                    </div>
+                            <div className="grid gap-4">
+                                <div className="flex items-center">
+                                    <Label htmlFor="password" className='text-sm'>LÖSENORD</Label>
+                                </div>
+                                <Input
+                                    id="password"
+                                    type="password"
+                                    required
+                                    tabIndex={2}
+                                    autoComplete="current-password"
+                                    value={data.password}
+                                    onChange={(e) => setData('password', e.target.value)}
+                                    placeholder="Password"
+                                    className='border-1 border-black rounded-4xl'
+                                />
+                                <InputError message={errors.password} />
+                            </div>
 
-                    <div className="grid gap-2">
-                        <div className="flex items-center">
-                            <Label htmlFor="password">Password</Label>
-                            {canResetPassword && (
-                                <TextLink href={route('password.request')} className="ml-auto text-sm" tabIndex={5}>
-                                    Forgot password?
-                                </TextLink>
-                            )}
+                            <div className="flex items-center space-x-3">
+                                <Checkbox
+                                    id="remember"
+                                    name="remember"
+                                    checked={data.remember}
+                                    onClick={() => setData('remember', !data.remember)}
+                                    tabIndex={3}
+                                />
+                                <Label htmlFor="remember" className='text-sm'>Remember me</Label>
+                            </div>
+
+                      
+
+                            <Button type="submit" className="bg-primary-red self-end" tabIndex={4} disabled={processing}>
+                                {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
+                                Logga in
+                                <ArrowRight/>
+                            </Button>
                         </div>
-                        <Input
-                            id="password"
-                            type="password"
-                            required
-                            tabIndex={2}
-                            autoComplete="current-password"
-                            value={data.password}
-                            onChange={(e) => setData('password', e.target.value)}
-                            placeholder="Password"
-                        />
-                        <InputError message={errors.password} />
-                    </div>
+                    </form>
 
-                    <div className="flex items-center space-x-3">
-                        <Checkbox
-                            id="remember"
-                            name="remember"
-                            checked={data.remember}
-                            onClick={() => setData('remember', !data.remember)}
-                            tabIndex={3}
-                        />
-                        <Label htmlFor="remember">Remember me</Label>
-                    </div>
-
-                    <Button type="submit" className="mt-4 w-full" tabIndex={4} disabled={processing}>
-                        {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                        Log in
-                    </Button>
+                    {status && <div className="mb-4 text-center text-sm font-medium text-green-600">{status}</div>}
                 </div>
-
-                <div className="text-muted-foreground text-center text-sm">
-                    Don't have an company account?{' '}
-                    <TextLink href={route('register')} tabIndex={5}>
-                        Sign up
-                    </TextLink>
-                </div>
-                
-                <div className="text-muted-foreground text-center text-sm">
-                    Don't have an student account?{' '}
-                    <TextLink href={route('register.student')} tabIndex={5}>
-                        Sign up
-                    </TextLink>
-                </div>
-            </form>
-
-            {status && <div className="mb-4 text-center text-sm font-medium text-green-600">{status}</div>}
-        </AuthLayout>
+            </AuthLayout>
+            <FooterLayout isCompany={true}></FooterLayout>
+        </OuterLayout>
     );
 }

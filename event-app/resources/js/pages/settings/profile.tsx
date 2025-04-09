@@ -9,9 +9,8 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layoutStudent';
-import FooterLayout from '../../layouts/app/app-footer-layout';
+import OuterLayout from '@/layouts/app/app-outer-layout';
 
 
 type ProfileForm = {
@@ -19,7 +18,7 @@ type ProfileForm = {
     email: string;
 }
 
-export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: boolean; status?: string }) {
+export default function Profile({ mustVerifyEmail, status, isStudent, isCompany }: { mustVerifyEmail: boolean; status?: string; isStudent: boolean; isCompany: boolean; }) {
     const { auth } = usePage<SharedData>().props;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
@@ -36,11 +35,11 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
     };
 
     return (
-        <>
+        <OuterLayout isCompany={isCompany}>
         <SettingsLayout>
         <Head title="User settings" />
             <div className="space-y-6">
-            <h1 className='text-[48px] font-thin py-4'>REDIGERA KONTO</h1>
+            <h1 className='text-[48px] font-thin py-4 lg:py-0'>REDIGERA KONTO</h1>
                 <form onSubmit={submit} className="space-y-6">
                     <div className="grid gap-2">
                         <Label htmlFor="name" className='text-sm' >NAMN</Label>
@@ -96,7 +95,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                         </div>
                     )}
 
-                    <div className="flex items-center gap-4 justify-between">
+                    <div className="flex items-center gap-4 justify-between lg:justify-normal">
                     <Link
                         href={route('logout')}
                         method="post"
@@ -123,14 +122,12 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
             <Link
             href={route('password.edit')}
             method="get"
-            as="button"
             className="underline"
         >
             Ändra lösenord
         </Link>
         </SettingsLayout>
-        
-        <FooterLayout></FooterLayout>
-        </>
+        </OuterLayout>
+
     );
 }

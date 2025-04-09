@@ -31,7 +31,7 @@ export default function DeleteUser() {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 mb-4 mt-8">
             <HeadingSmall title="TA BORT MITT KONTO" />
             <div className="space-y-4 rounded-2xl border-1 border-black p-4 flex flex-col justify-center ">
                 <div className="relative space-y-0.5 ">

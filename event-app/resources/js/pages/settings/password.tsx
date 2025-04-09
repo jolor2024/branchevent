@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AppFooterLayout from '../../layouts/app/app-footer-layout';
+import OuterLayout from '@/layouts/app/app-outer-layout';
 
 
 export default function Password() {
@@ -44,8 +45,8 @@ export default function Password() {
     };
 
     return (
-        <>
-        <SettingsLayout>
+        <OuterLayout >
+<SettingsLayout>
         <Head title="Profile settings" />
             <h1 className='text-[48px] font-thin py-4'>ÄNDRA LÖSENORD</h1>
             <div className="space-y-6">
@@ -116,7 +117,6 @@ export default function Password() {
                 </form>
             </div>
         </SettingsLayout>
-        <AppFooterLayout></AppFooterLayout>
-        </>
+        </OuterLayout>
     );
 }
