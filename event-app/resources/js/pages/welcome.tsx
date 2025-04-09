@@ -18,6 +18,7 @@ export default function Welcome() {
         const hero = document.getElementById('hero');
         const event = document.getElementById('event');
         const footer = document.getElementById('footer');
+        const eventcomp = document.getElementById('event-comp');
         const registerButton = document.getElementById('register-button');
         const registerDesktop = document.getElementById('register-desktop');
         //const tabsButton = document.getElementById('tabsTrigger');
@@ -36,6 +37,8 @@ export default function Welcome() {
             //tabsButton.classList.remove("bg-primary-red")
            //tabsButton.classList.add("bg-primary-blue");
             event.innerHTML = "Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.";
+            eventcomp.innerHTML = "Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.";
+
         } else if (activeTab === "student") {
             header.classList.remove("bg-primary-blue");
             header.classList.add("bg-primary-red");
@@ -50,6 +53,7 @@ export default function Welcome() {
             //tabsButton.classList.remove("bg-primary-blue");
             //tabsButton.classList.add("bg-primary-red");
             event.innerHTML="Välkommen Digital Designers och Webbutvecklare på mingelevent för att hitta framtida LIA-platser och skapa kontakter med företag. ";
+            eventcomp.innerHTML="Välkommen Digital Designers och Webbutvecklare på mingelevent för att hitta framtida LIA-platser och skapa kontakter med företag.";
         }
     }, [activeTab]);
 
@@ -144,12 +148,12 @@ export default function Welcome() {
             </TabsTrigger>
         </TabsList>
         <TabsContent value="company">
-            <h2 className="text-2xl font-semibold mt-6 mb-2 ">FÖRETAG</h2>
-            <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4">Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.</p>
+            <h2 className="text-2xl font-semibold mt-6 mb-2   lg:hidden">FÖRETAG</h2>
+            <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4  lg:hidden">Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.</p>
         </TabsContent>
         <TabsContent value="student">
-            <h2 className="text-2xl font-semibold mt-6 mb-2">STUDENT</h2>
-            <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4">Här kan du som elev registrera dig och skapa en profil för att enkelt oxh smidigt kunna hitta och ta kontakt med företag.</p>
+            <h2 className="text-2xl font-semibold mt-6 mb-2  lg:hidden">STUDENT</h2>
+            <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4  lg:hidden">Här kan du som elev registrera dig och skapa en profil för att enkelt oxh smidigt kunna hitta och ta kontakt med företag.</p>
         </TabsContent>
     </Tabs>       
 
@@ -170,29 +174,82 @@ export default function Welcome() {
                 </p>*/}
                 <img src='/assets/Smilley-colleagues.png' alt="welcome-group" className="mx-auto mt-4 lg:hidden" />
                 </section>
-
-                <section className="flex flex-col  mt-8 mx-8 text-left">
-                    <h4 className=" text-2xl font-semibold mb-2  whitespace-nowrap"> OM EVENTET </h4>
-                    <div className="flex justify-end w-[344px]">
-                        <p id="event" className= "flex justify-center text-black text-lg font-normal leading-6 tracking-wide mb-6 ">
-                            Välkomna på mingelevent för att hitta <br />
-                            framtida medarbetare i ert företag <br /> 
-                            eller bara jobba tillsammans under<br /> 
-                            LIA. Ni kommer att träffa <br /> 
-                            Webbutvecklare och Digital Designers <br /> 
-                            från Yrgo som vill visa vad de har <br /> 
-                            jobbat med under året, och vi hoppas <br /> 
-                            att ni hittar en match.
-                        </p>
-                    </div>
-                </section>
-{/* Text just for  desktop */}
-<div className="hidden lg:block lg:absolute lg:w-[260px] lg:h-[96px] lg:top-[769px] lg:left-[1228px]">
-  <p className="mb-4 font-['Inter'] font-normal text-[25px] leading-[25px] tracking-normal text-right">
-    23 april<br />
-    kl 13-15<br />
-    Lindholmspiren 3
-  </p>
+                <section className="flex flex-col items-center mx-auto lg:hidden">
+                <h4 className=" text-2xl font-semibold mt-6 mb-2 w-[159px] h-[24px] px-[25px] whitespace-nowrap">
+    OM EVENTET
+    </h4>
+    <div className="flex justify-end w-[344px]">
+        <p id="event" className= "flex justify-center text-black text-lg font-normal leading-6 tracking-wide mb-4  ">
+            Välkomna på mingelevent för att hitta <br />
+            framtida medarbetare i ert företag <br /> 
+            eller bara jobba tillsammans under<br /> 
+            LIA. Ni kommer att träffa <br /> 
+            Webbutvecklare och Digital Designers <br /> 
+            från Yrgo som vill visa vad de har <br /> 
+            jobbat med under året, och vi hoppas <br /> 
+            att ni hittar en match.
+        </p>
+    </div>
+</section>
+            {/*VERSION DESKTOP for the <MAIN> */} 
+<div className="hidden lg:flex lg:justify-between lg:items-start lg:w-full lg:px-8 lg:mt-8 lg:gap-8">
+  {/* tab content in the left side of the main*/}
+  <div className="w-[25%] ">
+    <Tabs defaultValue="company" value={activeTab} onValueChange={setActiveTab} id="tabsTrigger" className="w-full ">
+      <TabsList className="flex h-[62px] rounded-[54px] bg-[#001A52] p-[7px_6px] justify-between lg:hidden">
+        <TabsTrigger value="company" className="rounded-full text-lg font-medium bg-yellow-400 text-black  lg:hidden">
+          FÖRETAG
+        </TabsTrigger>
+        <TabsTrigger value="student" className="rounded-full text-lg font-medium bg-green-500 text-black ml-4  lg:hidden">
+          ELEV
+        </TabsTrigger>
+      </TabsList>
+      
+      <TabsContent value="company">
+        <h2 className="text-2xl font-semibold mt-6 mb-2">FÖRETAG</h2>
+        <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4">
+          Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.
+        </p>
+      </TabsContent>
+      <TabsContent value="student">
+        <h2 className="text-2xl font-semibold mt-6 mb-2">STUDENT</h2>
+        <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4">
+          Här kan du som elev registrera dig och skapa en profil för att enkelt oxh smidigt kunna hitta och ta kontakt med företag.
+        </p>
+      </TabsContent>
+    </Tabs>
+  </div>
+    
+  {/*OM EVENTET in the middle of main */}
+  <section className="flex flex-col w-[25%]">
+    <h4 className="text-2xl font-semibold mb-2 whitespace-nowrap">OM EVENTET</h4>
+    <div className="flex justify-start w-full">
+      <p id="event-comp" className="text-black text-lg font-normal leading-6 tracking-wide mb-6">
+        Välkomna på mingelevent för att hitta <br />
+        framtida medarbetare i ert företag <br />
+        eller bara jobba tillsammans under<br />
+        LIA. Ni kommer att träffa <br />
+        Webbutvecklare och Digital Designers <br />
+        från Yrgo som vill visa vad de har <br />
+        jobbat med under året, och vi hoppas <br />
+        att ni hittar en match.
+      </p>
+    </div>
+  </section>
+  
+  {/* Vector línea negra horizontal */}
+  <div className="w-[25%] flex items-center justify-center">
+    <div className="w-[200px] h-[2px] bg-black self-center"></div>
+  </div>
+    
+  {/*Fecha y lugar a la derecha */}
+  <div className="w-[25%] text-right">
+    <p className="mb-4 font-['Inter'] font-normal text-[25px] leading-[25px] tracking-normal">
+      23 april<br />
+      kl 13-15<br />
+      Lindholmspiren 3
+    </p>
+  </div>
 </div>
                     </main> 
                     <div className="lg:hidden">
