@@ -1,55 +1,17 @@
-import { type SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useEffect, useState } from 'react';
 import { CircleUserRound } from 'lucide-react';
-
 import FooterLayout from '@/layouts/app/app-footer-layout';
 
 export default function Welcome() {
-    const { auth } = usePage<SharedData>().props;
     const [activeTab, setActiveTab] = useState("company");
 
-  
-
-    // Change Color and info about the event if the user is a student or a company
-    useEffect(() => {
-        const header = document.getElementById('header');
-        const hero = document.getElementById('hero');
-        const event = document.getElementById('event');
-        const footer = document.getElementById('footer');
-        const eventcomp = document.getElementById('event-comp');
-        const registerButton = document.getElementById('register-button');
-        const registerDesktop = document.getElementById('register-desktop');
-        //const tabsButton = document.getElementById('tabsTrigger');
-
-        if (activeTab === "company") {
-            footer.classList.remove("bg-primary-red");
-            footer.classList.add("bg-primary-blue");
-            registerButton.classList.remove("bg-primary-red");
-            registerButton.classList.add("bg-primary-blue");
-            registerDesktop.classList.remove("bg-primary-red");
-            registerDesktop.classList.add("bg-primary-blue");
-            //tabsButton.classList.remove("bg-primary-red")
-           //tabsButton.classList.add("bg-primary-blue");
-            event.innerHTML = "Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.";
-            eventcomp.innerHTML = "Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.";
-
-        } else if (activeTab === "student") {
-            hero.classList.remove("bg-primary-blue");///
-            hero.classList.add("bg-primary-red");////
-            footer.classList.remove("bg-primary-blue");
-            footer.classList.add("bg-primary-red");
-            registerButton.classList.remove("bg-primary-blue");
-            registerButton.classList.add("bg-primary-red");
-            registerDesktop.classList.remove("bg-primary-blue");
-            registerDesktop.classList.add("bg-primary-red");
-            //tabsButton.classList.remove("bg-primary-blue");
-            //tabsButton.classList.add("bg-primary-red");
-            event.innerHTML="Välkommen Digital Designers och Webbutvecklare på mingelevent för att hitta framtida LIA-platser och skapa kontakter med företag. ";
-            eventcomp.innerHTML="Välkommen Digital Designers och Webbutvecklare på mingelevent för att hitta framtida LIA-platser och skapa kontakter med företag.";
-        }
-    }, [activeTab]);
+    const eventTexts = {
+      company: "Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.",
+      student: "Här kan du som elev registrera dig och skapa en profil för att enkelt och smidigt kunna hitta och ta kontakt med företag.",
+      about: "Välkommen Digital Designers och Webbutvecklare på mingelevent för att hitta framtida LIA-platser och skapa kontakter med företag. "
+    };
 
     return (
         
@@ -58,12 +20,12 @@ export default function Welcome() {
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
             </Head>
+
             <header id="header" className={`text-sm not-has-[nav]:hidden lg:bg-transparent ${
         activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"
-      }`}
-    >
+      }`} >
                 <nav className="flex items-center justify-between gap-4 px-6 py-4 lg:bg-white lg:px-16 lg:py-6">
-                    <a href="" className="w-44">
+                    <a href="" classNatme="w-44">
                         <img src="/assets/loggo_white.svg"    className="block lg:hidden" alt="Logo white"/>
                           {/* Logo for Desktop*/}
                         <img src="/assets/yrgologo.svg" className="hidden lg:block h-10" alt="Logo red" />
@@ -72,33 +34,36 @@ export default function Welcome() {
                       {/* Tabs trigger in the middle. for Desktop */}
                       <div className="hidden lg:flex lg:flex-grow lg:justify-center">
                         <Tabs 
-                            defaultValue="company" 
+                            
                             value={activeTab} 
                             onValueChange={setActiveTab} 
-                            className="w-96"
                         >
-                            <TabsList className="flex h-[62px] w-[344px] rounded-[54px] bg-[#001A52] p-[7px_6px] justify-between">
+                            <TabsList className={`flex h-[62px] w-[344px] rounded-[54px] p-[7px_6px] justify-between  ${activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"}`}>
                                 <TabsTrigger 
                                     value="company" 
-                                    className="rounded-full text-lg font-medium bg-white text-black w-[164px]]">
+                                    className={`rounded-full text-lg font-medium  ${activeTab === "company" ? "text-primary-blue" : "text-white"}`}>
                                     FÖRETAG
                                 </TabsTrigger>
                                 <TabsTrigger 
                                     value="student" 
-                                    className="rounded-full text-lg font-medium  bg-[#f2e9e7] text-white w-[164px]">
+                                    className={`rounded-full text-lg font-medium   ${activeTab === "company" ? "text-white" : "text-primary-red"}`}>
                                     ELEV
                                 </TabsTrigger>
                             </TabsList>
                         </Tabs>
                     </div>
 
-                     {/* Registrera dig for Desktop. up in tghe nav*/}
+                     {/* Registrera dig for Desktop*/}
                      <Link
-                            href={route('register')}
-                           id="register-desktop" className={`hidden lg:inline-block bg-primary-blue  rounded-[30px] border border-transparent px-5 py-2 text-sm leading-[16px] text-white hover:border-[#19140035] font-medium uppercase tracking-normal`}
-                        >
-                            Registrera dig
-                        </Link>
+                        href={route('register')}
+                        id="register-desktop"
+                        className={`hidden lg:inline-block ${
+                          activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"
+                        } rounded-[30px] border border-transparent px-5 py-2 text-sm leading-[16px] text-white hover:border-[#19140035] font-medium uppercase tracking-normal`}
+                      >
+                        Registrera dig
+                      </Link>
+
 
                      {/* Login also for desktop. at the right side of the nav*/}
                      <div className="flex items-center gap-4">
@@ -112,152 +77,132 @@ export default function Welcome() {
 
                    
                       </div>
-                   </nav>
-                   <div
-  id="hero"
-  className={`py-10 pl-[20px] lg:pl-16 lg:py-16 flex items-center min-h-[70vh] ${
-    activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"
-  }`}
->
-  <h1 className="text-white text-[68px] font-thin leading-[64px] tracking-tighter pl-[20px] lg:pl-0 lg:text-[100px] lg:leading-[90px]">
-    LIA <br />
-    <span className="text-[60px] font-bold pl-[2px]">CONNECT</span>
-    <br />
-    2025
-  </h1>
-
-  <p className="flex justify-center text-white text-lg font-normal mt-4 tracking-wide pl-[20px] lg:pl-0 lg:hidden lg:text-2xl">
-    23 april | kl 13-15 | Lindholmspiren 3
-  </p>
-</div>
-
-
+                </nav>
             </header>
-               <main>
-               <section className="flex justify-center ">
 
-    <Tabs 
-        defaultValue="company" 
-        value={activeTab} 
-        onValueChange={setActiveTab} 
-        id= "tabsTrigger" className="relative w-[344px] mt-[22px]"
-    >
-        <TabsList className="flex h-[62px] w-[344px] rounded-[54px] bg-[#001A52] p-[7px_6px] justify-between lg:hidden">    
-            <TabsTrigger 
-                value="company"     
-                className="rounded-full text-lg font-medium bg-yellow-400 text-black lg:hidden">
-                FÖRETAG
-            </TabsTrigger>
-            <TabsTrigger 
-                value="student" 
-                className="rounded-full text-lg font-medium  bg-green-500 text-black  lg:hidden">
-                ELEV
-            </TabsTrigger>
-        </TabsList>
-        <TabsContent value="company">
-            <h2 className="text-2xl font-semibold mt-6 mb-2   lg:hidden">FÖRETAG</h2>
-            <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4  lg:hidden">Välkommen Digital Designers och Webbutvecklare på mingelevent för att hitta framtida LIA-platser och skapa kontakter med företag. </p>
-        </TabsContent>
-        <TabsContent value="student">
-            <h2 className="text-2xl font-semibold mt-6 mb-2  lg:hidden">STUDENT</h2>
-            <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4  lg:hidden">Här kan du som elev registrera dig och skapa en profil för att enkelt oxh smidigt kunna hitta och ta kontakt med företag.</p>
-        </TabsContent>
-    </Tabs>       
 
-            </section>
-            <section>
-                <div className="flex justify-center w-full" >
-            <Link
-                href={route('register')}
-                id="register-button"  className= "bg-primary-blue inline-block rounded-[30px] border border-transparent px-[32px] py-[16px] text-sm leading-[16px] text-white hover:border-[#19140035] mb-4 w-[195px] h-[48px] font-medium uppercase tracking-normal mt-4 relative left-[10px] lg:hidden">
-                Registrera dig
-            </Link>
-            </div>
-             {/* <h3 className="text-2xl font-semibold mt-6 mb-2">När och var. </h3>
-                <p className="mb-4">
-                23 april<br />
-                    kl 13-15<br />
-                    Lindholmspiren 3
-                </p>*/}
-                <img src='/assets/Smilley-colleagues.png' alt="welcome-group" className="mx-auto mt-4 lg:hidden" />
-                </section>
-                <section className="flex flex-col items-center mx-auto lg:hidden">  
-                <h4 className=" text-2xl font-semibold mt-6 mb-2 w-[159px] h-[24px] px-[25px] whitespace-nowrap">
-    OM EVENTET
-    </h4>
-    <div className="flex justify-end w-[344px]">
-        <p id="event" className= "flex justify-center text-black text-lg font-normal leading-6 tracking-wide mb-4  ">
-        Välkommen Digital Designers och Webbutvecklare på mingelevent för att hitta framtida LIA-platser och skapa kontakter med företag. 
-        </p>
-    </div>
-            </section>
-            {/*VERSION DESKTOP for the <MAIN> */} 
-<div className="hidden lg:flex lg:justify-between lg:items-center lg:w-full lg:px-8 lg:mt-8 lg:gap-8">
-  {/* tab content in the left side of the main*/}
-  <div className="w-[25%] ">
-    <Tabs defaultValue="company" value={activeTab} onValueChange={setActiveTab} id="tabsTrigger" className="w-full ">
-      <TabsList className="flex h-[62px] rounded-[54px] bg-[#001A52] p-[7px_6px] justify-between lg:hidden">
-        <TabsTrigger value="company" className="rounded-full text-lg font-medium bg-yellow-400 text-black  lg:hidden">
-          FÖRETAG
-        </TabsTrigger>
-        <TabsTrigger value="student" className="rounded-full text-lg font-medium bg-green-500 text-black ml-4  lg:hidden">
-          ELEV
-        </TabsTrigger>
-      </TabsList>
-      
-      <TabsContent value="company">
-        <h2 className="text-2xl font-semibold mb-2">FÖRETAG</h2>
-        <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4">
-          Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.
-        </p>
-      </TabsContent>
-      <TabsContent value="student">
-        <h2 className="text-2xl font-semibold mt-6 mb-2">STUDENT</h2>
-        <p className="text-black text-lg font-normal leading-6 tracking-wide mb-4">
-          Här kan du som elev registrera dig och skapa en profil för att enkelt oxh smidigt kunna hitta och ta kontakt med företag.
-        </p>
-      </TabsContent>
-    </Tabs>
-  </div>
-                  
-  {/*OM EVENTET in the middle of main */}
-  <section className="flex flex-col w-[25%]">
-    <h4 className="text-2xl font-semibold mb-2 whitespace-nowrap">OM EVENTET</h4>
-    <div className="flex justify-start w-full">
-      <p id="event-comp" className="text-black text-lg font-normal leading-6 tracking-wide mb-6">
-        Välkomna på mingelevent för att hitta <br />
-        framtida medarbetare i ert företag <br />
-        eller bara jobba tillsammans under<br />
-        LIA. Ni kommer att träffa <br />
-        Webbutvecklare och Digital Designers <br />
-        från Yrgo som vill visa vad de har <br />
-        jobbat med under året, och vi hoppas <br />
-        att ni hittar en match.
+    <div id="hero" className={`py-10 pl-[20px] lg:pl-16 lg:py-16 flex items-center min-h-[70vh] 
+      ${ activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"}`}>
+      <h1 className="text-white text-[68px] font-thin leading-[64px] tracking-tighter pl-[20px] lg:pl-0 lg:text-[100px] lg:leading-[90px]">
+        LIA <br />
+        <span className="text-[60px] font-bold pl-[2px]">CONNECT</span>
+        <br />
+        2025
+      </h1>
+
+      <p className="flex justify-center text-white text-lg font-normal mt-4 tracking-wide pl-[20px] lg:pl-0 lg:hidden lg:text-2xl">
+        23 april | kl 13-15 | Lindholmspiren 3
       </p>
     </div>
-  </section>
-  
-  {/* Vector línea negra horizontal */}
-  <div className="w-[25%] flex items-center justify-center">
-    <div className="w-full h-[2px] bg-black"></div>
-  </div>
+
+    <main>
+      <section className="flex justify-center ">
+
+      <Tabs 
+
+        className='lg:hidden'
+        value={activeTab} 
+        onValueChange={setActiveTab} 
+        >
+            <TabsList className={`flex h-[62px] w-[344px] rounded-[54px] p-[7px_6px] justify-between  ${activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"}`}>
+                <TabsTrigger 
+                    value="company" 
+                    className={`rounded-full text-lg font-medium  ${activeTab === "company" ? "text-primary-blue" : "text-white"}`}>
+                    FÖRETAG
+                </TabsTrigger>
+                <TabsTrigger 
+                    value="student" 
+                    className={`rounded-full text-lg font-medium   ${activeTab === "company" ? "text-white" : "text-primary-red"}`}>
+                    ELEV
+                </TabsTrigger>
+            </TabsList>
+        </Tabs>     
+
+      </section>
+      <section>
+      {/* <h3 className="text-2xl font-semibold mt-6 mb-2">När och var. </h3>
+          <p className="mb-4">
+          23 april<br />
+              kl 13-15<br />
+              Lindholmspiren 3
+          </p>*/}
+        <section className="flex flex-col items-center mx-auto lg:hidden">  
+        <h4 className=" text-2xl text-left font-semibold mt-6 mb-2 w-[159px] h-[24px] px-[25px] whitespace-nowrap">
+        {activeTab === "company" ? "FÖRETAG" : "ELEV"}
+        </h4>
+        <div className="flex justify-end w-[344px]">
+            <p id="event" className= "flex justify-center text-black text-lg font-normal leading-6 tracking-wide mb-4  ">
+            {activeTab === "company" ? eventTexts.company : eventTexts.student}
+            </p>
+        </div>
+      </section>
+
+      <div className="flex justify-center w-full" >
+          <Link
+            href={route('register')}
+            id="register-button"
+            className={`${
+              activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"
+            } inline-block rounded-[30px] border border-transparent px-[32px] py-[16px] text-sm leading-[16px] text-white hover:border-[#19140035] mb-4 w-[195px] h-[48px] font-medium uppercase tracking-normal mt-4 relative left-[10px] lg:hidden`}
+          >
+            Registrera dig
+          </Link>
+          </div>
+
+      <img src='/assets/Smilley-colleagues.png' alt="welcome-group" className="mx-auto mt-4 lg:hidden" />
+      </section>
+      <section className="flex flex-col items-center mx-auto lg:hidden">  
+        <h4 className=" text-2xl font-semibold mt-6 mb-2 w-[159px] h-[24px] px-[25px] whitespace-nowrap">
+OM EVENTET
+        </h4>
+        <div className="flex justify-end w-[344px]">
+            <p id="event" className= "flex justify-center text-black text-lg font-normal leading-6 tracking-wide mb-4  ">
+            Välkommen Digital Designers och Webbutvecklare på mingelevent för att hitta framtida LIA-platser och skapa kontakter med företag. 
+            </p>
+        </div>
+      </section>
+
+      {/* Desktion version*/} 
+    <div className="hidden lg:flex lg:justify-center  lg:w-full lg:px-8 lg:mt-8 lg:gap-8">
     
-  {/*Fecha y lugar a la derecha */}
-  <div className="w-[25%] text-right flex items-center">
-    <p className="font-['Inter'] font-normal text-[25px] leading-[25px] tracking-normal">
-      23 april<br />
-      kl 13-15<br />
-      Lindholmspiren 3
-    </p>
-  </div>
-</div>
-</main> 
+    {/*Company / Student info */}
+    <section className="w-[25%]">
+      <div className='flex flex-col'>
+      <h4 className="text-2xl font-semibold mb-2 whitespace-nowrap">{activeTab === "company" ? "FÖRETAG" : "ELEV"}</h4>
+        <div className="flex justify-start w-full">
+          <p id="event-comp" className="text-black text-lg font-normal leading-6 tracking-wide mb-6">
+          {activeTab === "company" ? eventTexts.company : eventTexts.student}
+          </p>
+        </div>
+      </div>
+      </section>
 
-<div className="lg:hidden">
-<FooterLayout isCompany={true}/> 
-</div>
+    {/*OM EVENTET in the middle of main */}
+    <section className="flex flex-col w-[25%]">
+      <h4 className="text-2xl font-semibold mb-2 whitespace-nowrap">OM EVENTET</h4>
+      <div className="flex justify-start w-full">
+        <p id="event-comp" className="text-black text-lg font-normal leading-6 tracking-wide mb-6">
+        {eventTexts.about}
+        </p>
+      </div>
+    </section>
 
-        </>
+    <div className="flex justify-center items-center w-[25%]">
+      <div className="w-full h-[2px] bg-black"></div>
+    </div>
+        
+    <div className="flex justify-center items-center w-[25%]">
+      <p className="font-['Inter'] font-normal text-[25px] leading-[25px] tracking-normal">
+        23 april<br />
+        kl 13-15<br />
+        Lindholmspiren 3
+      </p>
+    </div>
+
+    </div>
+  </main> 
+  <FooterLayout isCompany={activeTab === "company"}/> 
+  </>
     );
 }
 
