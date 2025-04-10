@@ -16,7 +16,6 @@ class CompanySeeder extends Seeder
     {
 
         // Create a user with the 'company' role
-        // Create a user with the 'company' role
         $user = User::create([
             'name' => 'alice',
             'email' => 'alice@example.com',

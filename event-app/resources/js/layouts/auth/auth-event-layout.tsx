@@ -1,13 +1,10 @@
-import { Link } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
 
 interface AuthLayoutProps {
     name?: string;
-    title?: string;
-    description?: string;
 }
 
-export default function AuthEventLayout({ children, title, description }: PropsWithChildren<AuthLayoutProps>) {
+export default function AuthEventLayout({ children }: PropsWithChildren<AuthLayoutProps>) {
     return (
         <div className='px-6 pb-6'>
             {children}

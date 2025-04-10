@@ -1,8 +1,8 @@
 import { PropsWithChildren, ReactNode } from "react";
 
 interface OuterLayoutProps {
-  children: ReactNode;  // Explicitly define children type
-  isCompany?: boolean;       // Optional color prop
+  children: ReactNode;  
+  isCompany?: boolean;      
 }
 
 export default function OuterLayout({children, isCompany}: OuterLayoutProps) {
