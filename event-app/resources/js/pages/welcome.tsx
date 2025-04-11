@@ -24,59 +24,59 @@ export default function Welcome() {
             <header id="header" className={`text-sm not-has-[nav]:hidden lg:bg-transparent ${
         activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"
       }`} >
-                <nav className="flex items-center justify-between gap-4 px-6 py-4 lg:bg-white lg:px-16 lg:py-6">
+                <nav className="flex items-center justify-between px-6 py-4 lg:bg-white lg:px-16 lg:py-6">
                     <a href="" classNatme="w-44">
                         <img src="/assets/loggo_white.svg"    className="block lg:hidden" alt="Logo white"/>
                           {/* Logo for Desktop*/}
                         <img src="/assets/yrgologo.svg" className="hidden lg:block h-10" alt="Logo red" />
                     </a>
                      
-                      {/* Tabs trigger in the middle. for Desktop */}
-                      <div className="hidden lg:flex lg:flex-grow lg:justify-center">
+                     <div className='flex flex-row gap-10'>
+                     <div className="hidden lg:flex lg:flex-grow lg:justify-center">
                         <Tabs 
                             
                             value={activeTab} 
                             onValueChange={setActiveTab} 
                         >
-                            <TabsList className={`flex h-[62px] w-[344px] rounded-[54px] p-[7px_6px] justify-between  ${activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"}`}>
+                            <TabsList className={`flex py-6 px-1 rounded-[54px]  justify-between  ${activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"}`}>
                                 <TabsTrigger 
                                     value="company" 
-                                    className={`rounded-full text-lg font-medium  ${activeTab === "company" ? "text-primary-blue" : "text-white"}`}>
+                                    className={`rounded-full py-5 px-8 text-sm font-medium  ${activeTab === "company" ? "text-primary-blue" : "text-white"}`}>
                                     FÖRETAG
                                 </TabsTrigger>
                                 <TabsTrigger 
                                     value="student" 
-                                    className={`rounded-full text-lg font-medium   ${activeTab === "company" ? "text-white" : "text-primary-red"}`}>
+                                    className={`rounded-full py-5 px-8 text-sm font-medium   ${activeTab === "company" ? "text-white" : "text-primary-red"}`}>
                                     ELEV
                                 </TabsTrigger>
                             </TabsList>
                         </Tabs>
                     </div>
 
-                     {/* Registrera dig for Desktop*/}
+                     {/* Register Desktop*/}
                      <Link
-                        href={route('register')}
+                        href={activeTab === 'company' 
+                            ? route('register') 
+                            : route('register.student')}
                         id="register-desktop"
                         className={`hidden lg:inline-block ${
                           activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"
-                        } rounded-[30px] border border-transparent px-5 py-2 text-sm leading-[16px] text-white hover:border-[#19140035] font-medium uppercase tracking-normal`}
+                        } rounded-[30px] border border-transparent px-8 py-4 text-sm leading-[16px] text-white hover:border-[#19140035] font-medium uppercase tracking-normal`}
                       >
                         Registrera dig
                       </Link>
 
-
-                     {/* Login also for desktop. at the right side of the nav*/}
-                     <div className="flex items-center gap-4">
-                        <Link
-                            href={route('login')}
-                            className="inline-flex items-center space-x-2 rounded-lg border border-transparent px-5 py-1.5 text-base leading-normal text-white hover:border-[#19140035] font-normal lg:text-black"
-                        >
-                            <span>Logga in</span>
-                            <CircleUserRound className="text-white lg:text-primary-blue" />
-                        </Link>
-
+                     {/* Login desktop */}
+                      <Link
+                          href={route('login')}
+                          className="inline-flex items-center space-x-2 py-1.5 text-base leading-normal text-white hover:border-[#19140035] font-normal lg:text-black"
+                      >
+                          <span>Logga in</span>
+                          <CircleUserRound className="text-white lg:text-primary-blue" />
+                      </Link>
+                     </div>
+                      {/* Tabs Desktop */}
                    
-                      </div>
                 </nav>
             </header>
 
@@ -99,33 +99,26 @@ export default function Welcome() {
       <section className="flex justify-center ">
 
       <Tabs 
-
         className='lg:hidden'
         value={activeTab} 
         onValueChange={setActiveTab} 
         >
-            <TabsList className={`flex h-[62px] w-[344px] rounded-[54px] p-[7px_6px] justify-between  ${activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"}`}>
-                <TabsTrigger 
-                    value="company" 
-                    className={`rounded-full text-lg font-medium  ${activeTab === "company" ? "text-primary-blue" : "text-white"}`}>
-                    FÖRETAG
-                </TabsTrigger>
-                <TabsTrigger 
-                    value="student" 
-                    className={`rounded-full text-lg font-medium   ${activeTab === "company" ? "text-white" : "text-primary-red"}`}>
-                    ELEV
-                </TabsTrigger>
-            </TabsList>
+          <TabsList className={`flex h-[62px] w-[344px] rounded-[54px] p-[7px_6px] justify-between  ${activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"}`}>
+              <TabsTrigger 
+                  value="company" 
+                  className={`rounded-full text-lg font-medium  ${activeTab === "company" ? "text-primary-blue" : "text-white"}`}>
+                  FÖRETAG
+              </TabsTrigger>
+              <TabsTrigger 
+                  value="student" 
+                  className={`rounded-full text-lg font-medium   ${activeTab === "company" ? "text-white" : "text-primary-red"}`}>
+                  ELEV
+              </TabsTrigger>
+          </TabsList>
         </Tabs>     
 
       </section>
       <section>
-      {/* <h3 className="text-2xl font-semibold mt-6 mb-2">När och var. </h3>
-          <p className="mb-4">
-          23 april<br />
-              kl 13-15<br />
-              Lindholmspiren 3
-          </p>*/}
         <section className="flex flex-col items-center mx-auto lg:hidden">  
         <h4 className=" text-2xl text-left font-semibold mt-6 mb-2 w-[159px] h-[24px] px-[25px] whitespace-nowrap">
         {activeTab === "company" ? "FÖRETAG" : "ELEV"}
