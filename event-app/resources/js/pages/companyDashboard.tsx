@@ -1,17 +1,52 @@
-import AppFooterLayout from '@/layouts/app/app-footer-layout';
-import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/react';
+
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { CircleUserRound } from 'lucide-react';
 import OuterLayout from '@/layouts/app/app-outer-layout';
+import { FormEventHandler, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Auth, SharedData, User } from '@/types';
+import InputError from '@/components/input-error';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Company Dashboard',
-        href: '/dashboard',
-    },
-];
 
-export default function Dashboard() {
+type DashboardProps = {
+    mustVerifyEmail: boolean;
+    status?: string;
+    isStudent: boolean;
+    isCompany: boolean;
+    companyName: string;
+    companyType: string;
+}
+
+type ProfileForm = {
+    name: string;
+    email: string;
+    companyName: string;
+    companyType: string;
+}
+
+
+
+export default function Dashboard({mustVerifyEmail, status, isStudent, isCompany, companyName, companyType}: DashboardProps) {
+    const { auth } = usePage<SharedData>().props;
+
+    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
+        name: auth.user.name,
+        email: auth.user.email,
+        companyName: companyName,
+        companyType: companyType
+    });
+
+    const submit: FormEventHandler = (e) => {
+        e.preventDefault();
+
+        patch(route('profile.update'), {
+            preserveScroll: true,
+        });
+    };
+
+    
     return (
         <OuterLayout isCompany={true}>
             <div>
@@ -33,38 +68,46 @@ export default function Dashboard() {
                 </nav>
 
                 <main className="mr-[24px] ml-[24px]">
-                    <form>
-                        <div className="">
-                            <h2 className="leading-2xl text-center font-sans text-3xl font-normal tracking-[0px]">Polestar</h2>
-                        </div>
+                <form onSubmit={submit} className="space-y-6">
 
-                        <div className="">
-                            <label htmlFor="description" className="text-1xl font-sans leading-[5.2px] font-normal tracking-[0px]">
-                                Jobb-beskrivning:
-                            </label>
+                <div className="grid gap-2">
+                        <Label htmlFor="companyName" className='text-sm' >Företagsnamn</Label>
+                        <Input
+                            id="companyName"
+                            className="mt-1 block w-full border-1 border-black rounded-4xl"
+                            value={data.companyName}
+                            onChange={(e) => setData('companyName', e.target.value)}
+                            required
+                            autoComplete="companyName"
+                            placeholder="Nytt Företagsnamn"
+                        />
 
-                            <textarea
-                                id="description"
-                                name="description"
-                                className="top-[35px] mt-[10px] mb-[24px] h-[141px] w-full rounded-[16px] border-[1px]"
-                            ></textarea>
-                        </div>
+                        <InputError className="mt-2" message={errors.name} />
+                    </div>
 
-                        <hr className=""></hr>
+                    <div className="grid gap-2">
+                        <Label htmlFor="companyType" className='text-sm' >Vad jobbar ni med?</Label>
+                        <Input
+                            id="companyType"
+                            className="mt-1 block w-full border-1 border-black rounded-4xl"
+                            value={data.companyType}
+                            onChange={(e) => setData('companyType', e.target.value)}
+                            required
+                            autoComplete="companyType"
+                            placeholder="T.ex Webbyrå, Bilförsäljning"
+                        />
 
-                        <div>
-                            <h3 className="text-1xl mt-[24px] mb-[24px] font-sans leading-[5.2px] font-normal tracking-[0px]">
-                                VILKA YRKESROLLER SÖKER NI?
-                            </h3>
-                        </div>
+                        <InputError className="mt-2" message={errors.name} />
+                    </div>
 
-                        <hr></hr>
 
-                        <button>SPARA ÄNDRINGAR</button>
-                    </form>
+
+                    <div className="flex items-center gap-4 justify-between lg:justify-normal">
+                        <Button disabled={processing} className='bg-primary-red'>SPARA</Button>
+                    </div>
+                </form>
                 </main>
 
-                <AppFooterLayout isCompany={true}></AppFooterLayout>
             </div>
         </OuterLayout>
     );

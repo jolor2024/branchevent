@@ -19,7 +19,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         if (Auth::user()->isStudent()) {
             return app(StudentDashboardController::class)->index();
         } else if (Auth::user()->isCompany()) {
-            return Inertia::render('companyDashboard');
+            return Inertia::render('companyDashboard', [
+                "companyName" => Auth::user()->company->company_name,
+                "companyType" => Auth::user()->company->company_type
+            ]);
         }
     })->name('dashboard');
 });

@@ -33,6 +33,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        error_log("$request", 4);
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -40,6 +41,23 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        if ($request->has('companyName')) {
+            $company = $request->user()->company;
+            $company->company_name = $request->input('companyName');  // Update the company name
+            if ($company->isDirty()) {
+                $company->save();
+            }
+        }
+
+        if ($request->has('companyType')) {
+            error_log("Inside company type", 4);
+            $company = $request->user()->company;
+            $company->company_type = $request->input('companyType');  // Update the company name
+            if ($company->isDirty()) {
+                $company->save();
+            }
+        }
 
         return to_route('profile.edit');
     }
