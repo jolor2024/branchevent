@@ -46,19 +46,26 @@ class ProfileController extends Controller
 
         if ($request->has('companyName')) {
             $company->company_name = $request->input('companyName');
+            if ($company->isDirty()) {
+                $company->save();
+            }
         }
 
         if ($request->has('companyType')) {
             $company->company_type = $request->input('companyType');
+            if ($company->isDirty()) {
+                $company->save();
+            }
         }
 
         if ($request->has('working_roles')) {
             $company->working_roles = $request->input('working_roles'); // This will be an array
+            if ($company->isDirty()) {
+                $company->save();
+            }
         }
 
-        if ($company->isDirty()) {
-            $company->save();
-        }
+
 
         return to_route('profile.edit');
     }

@@ -6,6 +6,7 @@ import FooterLayout from '@/layouts/app/app-footer-layout';
 
 export default function Welcome() {
     const [activeTab, setActiveTab] = useState("company");
+    
 
     const eventTexts = {
       company: "Här kan ni som företag registrera er och skapa en profil med snabb information, för att elever enklare ska kunna ta kontakt med er.",

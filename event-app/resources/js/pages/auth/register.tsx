@@ -27,7 +27,8 @@ type RegisterForm = {
     email: string;
     password: string;
     password_confirmation: string;
-    working_roles: string[]
+    working_roles: string[];
+    gdpr_accepted: boolean;
 };
 
 export default function Register() {
@@ -38,7 +39,8 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
-        working_roles: []
+        working_roles: [],
+        gdpr_accepted: false
     });
 
     const submit: FormEventHandler = (e) => {
@@ -202,17 +204,21 @@ export default function Register() {
 
             <div className="grid gap-4">
                 <div className="items-top flex space-x-2">
-                    <Checkbox id="terms1" />
+                    <Checkbox
+                        id="terms1"
+                        checked={data.gdpr_accepted}
+                        onCheckedChange={(checked) => setData('gdpr_accepted', !!checked)}
+                    />
                     <div className="grid gap-1.5 leading-none">
                         <label
-                        htmlFor="terms1"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            htmlFor="terms1"
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                         >
-                        Jag samtycker att mina uppgifter sparas i enlighet med GDPR
+                            Jag samtycker att mina uppgifter sparas i enlighet med GDPR
                         </label>
-
                     </div>
                 </div>
+                {errors.gdpr_accepted && <span className="text-red-500">{errors.gdpr_accepted}</span>} {/* Display error */}
             </div>
 
             <Button type="button" onClick={goNext} className='bg-primary-blue self-end'>

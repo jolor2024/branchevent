@@ -6,12 +6,11 @@ use Inertia\Inertia;
 use App\Http\Controllers\StudentDashboardController;
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
     return Inertia::render('welcome');
 })->name('home');
-
-Route::get('/student', function () {
-    return Inertia::render('welcomeStudent');
-})->name('homeStudent');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

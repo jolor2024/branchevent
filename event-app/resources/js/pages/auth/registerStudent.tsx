@@ -12,12 +12,14 @@ import { ArrowLeft } from "lucide-react";
 import FooterLayout from '../../layouts/app/app-footer-layout';
 
 import OuterLayout from '@/layouts/app/app-outer-layout';
+import { Checkbox } from '@/components/ui/checkbox';
 
 type RegisterForm = {
     name: string;
     email: string;
     password: string;
     password_confirmation: string;
+    gdpr_accepted: boolean;
 };
 
 export default function Register() {
@@ -26,6 +28,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        gdpr_accepted: false,
     });
 
     const submit: FormEventHandler = (e) => {
@@ -151,6 +154,25 @@ export default function Register() {
                             />
                             <InputError message={errors.password_confirmation} />
                         </div>
+
+                        <div className="grid gap-4">
+                                    <div className="items-top flex space-x-2">
+                                        <Checkbox
+                                            id="terms1"
+                                            checked={data.gdpr_accepted}
+                                            onCheckedChange={(checked) => setData('gdpr_accepted', !!checked)}
+                                        />
+                                        <div className="grid gap-1.5 leading-none">
+                                            <label
+                                                htmlFor="terms1"
+                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            >
+                                                Jag samtycker att mina uppgifter sparas i enlighet med GDPR
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {errors.gdpr_accepted && <span className="text-red-500">{errors.gdpr_accepted}</span>} {/* Display error */}
+                                </div>
 
                         <Button type="submit" className="bg-primary-red self-end" tabIndex={5} disabled={processing}>
                             {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
