@@ -1,9 +1,3 @@
-import Heading from '@/components/heading';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { cn } from '@/lib/utils';
-import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/react';
 import { ArrowLeft } from 'lucide-react';
 import { type PropsWithChildren } from 'react';
 import FooterLayout from '../../layouts/app/app-footer-layout';
