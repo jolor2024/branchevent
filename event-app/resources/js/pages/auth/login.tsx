@@ -7,8 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import OuterLayout from '@/layouts/app/app-outer-layout';
-import FooterLayout from '../../layouts/app/app-footer-layout';
-import { ArrowLeft } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import AuthEventLayout from '@/layouts/auth/auth-event-layout';
 
@@ -41,15 +39,9 @@ export default function Login({ status, canResetPassword }: LoginProps) {
         <OuterLayout>
             <AuthEventLayout>
                 <Head title="Log in" />
-                <div className='pt-5 pl-5 bg-white'>
-                     <a href={"/"} >
-                    <ArrowLeft />
-                    </a>
-
-                <div className='flex flex-row  lg:px-20 gap-16 items-center justify-around'>
-                    <section className="max-w-xl">
-                    <h1 className='text-[48px] font-thin py-4 lg:py-0'>LOGGA IN</h1>
-                    <form className="flex flex-col gap-6" onSubmit={submit}>
+                <div className="space-y-6">
+                    <h1 className='text-4xl font-thin my-4 p-0 mb-8'>LOGGA IN</h1>
+                    <form className="flex flex-col gap-6 pb-4 lg:pb-0" onSubmit={submit}>
                     <div className="flex flex-col gap-8">
                     <div className="grid gap-4">
                         <Label htmlFor="email" className='text-sm'>EMAIL</Label>
@@ -93,18 +85,9 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                     </Button>
                     </div>
                     </form>
-
-                    </section>
-                    <div className='hidden lg:block'>
-                        <img src="/assets/dashboard.png" alt="Logo" className="w-[400px]" />
-                    </div>
-                </div>
-
-
-                    
                 </div>
             </AuthEventLayout>
-            <FooterLayout isCompany={true}></FooterLayout>
         </OuterLayout>
+        
     );
 }
