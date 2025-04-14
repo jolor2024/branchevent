@@ -46,9 +46,9 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                     <ArrowLeft />
                     </a>
 
-                <div className='flex flex-row  items-center justify-around'>
+                <div className='flex flex-row  lg:px-20 gap-16 items-center justify-around'>
                     <section className="max-w-xl">
-                    <h1 className='text-4xl font-thin my-4 p-0 mb-8'>LOGGA IN</h1>
+                    <h1 className='text-[48px] font-thin py-4 lg:py-0'>LOGGA IN</h1>
                     <form className="flex flex-col gap-6" onSubmit={submit}>
                     <div className="flex flex-col gap-8">
                     <div className="grid gap-4">
@@ -96,7 +96,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
 
                     </section>
                     <div className='hidden lg:block'>
-                        <img src="/assets/herostudent.png" alt="Logo" className="w-[400px]" />
+                        <img src="/assets/dashboard.png" alt="Logo" className="w-[400px]" />
                     </div>
                 </div>
 
