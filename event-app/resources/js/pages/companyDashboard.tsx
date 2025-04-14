@@ -1,6 +1,7 @@
 
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { CircleUserRound } from 'lucide-react';
+import { X } from 'lucide-react';
 import OuterLayout from '@/layouts/app/app-outer-layout';
 import { FormEventHandler, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -31,7 +32,7 @@ type ProfileForm = {
 
 
 
-export default function Dashboard({mustVerifyEmail, status, isStudent, isCompany, companyName, companyType}: DashboardProps) {
+export default function Dashboard({mustVerifyEmail, status, isStudent, isCompany, companyName, companyType, working_roles}: DashboardProps) {
     const { auth } = usePage<SharedData>().props;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
@@ -39,7 +40,7 @@ export default function Dashboard({mustVerifyEmail, status, isStudent, isCompany
         email: auth.user.email,
         companyName: companyName,
         companyType: companyType,
-        working_roles: []
+        working_roles: working_roles
     });
 
     const submit: FormEventHandler = (e) => {
@@ -53,6 +54,7 @@ export default function Dashboard({mustVerifyEmail, status, isStudent, isCompany
     const handleToggleChange = (selectedRoles: string[]) => {
         setData('working_roles', selectedRoles);
     };
+    {console.log(data)}
     
     return (
         <OuterLayout isCompany={true}>
@@ -107,34 +109,26 @@ export default function Dashboard({mustVerifyEmail, status, isStudent, isCompany
                         <InputError className="mt-2" message={errors.name} />
                     </div>
 
-                    
                     <div className="grid gap-2">
                         <Label htmlFor="studentRoles" className='text-sm'>VILKA YRKESROLLER SÖKER NI?</Label>
+                        
+                       
+                        
                         <ToggleGroup 
                             value={data.working_roles}
                             onValueChange={handleToggleChange}
                             variant="default" size="sm" type="multiple" className="flex flex-wrap gap-4">
-                            <ToggleGroupItem
-                                variant="outline"
-                                value="ux"
-                                className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            >
-                                UX
-                            </ToggleGroupItem>
-                            <ToggleGroupItem
-                                variant="outline"
-                                value="webbutveckling"
-                                className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            >
-                                Webbutveckling
-                            </ToggleGroupItem>
-                            <ToggleGroupItem
-                                variant="outline"
-                                value="marketing"
-                                className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            >
-                                Marknadsföring
-                            </ToggleGroupItem>
+                            {data.working_roles.map((role, index) => (
+                               <ToggleGroupItem
+                               key={index}
+                               variant="outline"
+                               value={role}
+                               className="px-4 py-2 bg-red-500 border border-gray-300 rounded-4xl hover:bg-gray-600"
+                           >
+                               {role}
+                               <X />
+                           </ToggleGroupItem>
+                            ))}
                         </ToggleGroup>
                     </div>
 

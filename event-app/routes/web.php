@@ -20,7 +20,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         } else if (Auth::user()->isCompany()) {
             return Inertia::render('companyDashboard', [
                 "companyName" => Auth::user()->company->company_name,
-                "companyType" => Auth::user()->company->company_type
+                "companyType" => Auth::user()->company->company_type,
+                "working_roles" => json_decode(Auth::user()->company->working_roles)
             ]);
         }
     })->name('dashboard');
