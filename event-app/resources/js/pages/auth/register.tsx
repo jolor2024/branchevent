@@ -272,24 +272,17 @@ export default function Register() {
                     variant="default" size="sm" type="multiple" className="flex flex-wrap gap-4">
                     <ToggleGroupItem
                         variant="outline"
-                        value="ux"
-                        className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        UX
-                    </ToggleGroupItem>
-                    <ToggleGroupItem
-                        variant="outline"
                         value="webbutveckling"
                         className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                        Webbutveckling
+                        Digital Designer
                     </ToggleGroupItem>
                     <ToggleGroupItem
                         variant="outline"
                         value="marketing"
                         className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                        Marknadsföring
+                        Webbutvecklare
                     </ToggleGroupItem>
                 </ToggleGroup>
                 </div>
