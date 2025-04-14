@@ -14,7 +14,7 @@ import AppFooterLayout from '../../layouts/app/app-footer-layout';
 import OuterLayout from '@/layouts/app/app-outer-layout';
 
 
-export default function Password() {
+export default function Password({isCompany}) {
     const passwordInput = useRef<HTMLInputElement>(null);
     const currentPasswordInput = useRef<HTMLInputElement>(null);
 
@@ -45,7 +45,7 @@ export default function Password() {
     };
 
     return (
-        <OuterLayout >
+        <OuterLayout isCompany={isCompany}>
 <SettingsLayout>
         <Head title="Profile settings" />
             <h1 className='text-[48px] font-thin py-4'>ÄNDRA LÖSENORD</h1>
