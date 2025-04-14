@@ -271,22 +271,19 @@ export default function Register() {
                     onValueChange={handleToggleChange}
                     variant="default" size="sm" type="multiple" className="flex flex-wrap gap-4">
                     <ToggleGroupItem
-                        variant="outline"
-                        value="webbutveckling"
-                        className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        variant="default"
+                        value="Digital Designer"
                     >
                         Digital Designer
                     </ToggleGroupItem>
                     <ToggleGroupItem
-                        variant="outline"
-                        value="marketing"
-                        className="px-4 py-2 bg-white border border-gray-300 rounded-4xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        variant="default"
+                        value="Webbutvecklare"
                     >
                         Webbutvecklare
                     </ToggleGroupItem>
                 </ToggleGroup>
                 </div>
-
 
                 <Button type="submit" className="bg-primary-blue self-end" tabIndex={5} disabled={processing}>
                     {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
