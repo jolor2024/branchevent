@@ -59,7 +59,7 @@ export default function Dashboard({mustVerifyEmail, status, isStudent, isCompany
     return (
         <OuterLayout isCompany={true}>
             <div>
-                <Head title="Company Dashboard" />
+                <Head title="LIA connect" />
 
                 <nav className="flex items-center justify-between gap-4 text-black">
                     <a href="/" className="w-44">

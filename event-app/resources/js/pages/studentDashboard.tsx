@@ -15,7 +15,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function Dashboard({companies}) {
     return (
         <div className='bg-white'>
-            <Head title="Student Dashboard" />
+            <Head title="LIA connect" />
             <header className='py-4'>
             <nav className="flex items-center justify-between gap-4 px-6">
             <a href="">

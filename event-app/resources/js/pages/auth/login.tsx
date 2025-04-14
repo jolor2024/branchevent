@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import OuterLayout from '@/layouts/app/app-outer-layout';
 import { ArrowRight } from "lucide-react";
 import AuthEventLayout from '@/layouts/auth/auth-event-layout';
+import { ArrowLeft } from 'lucide-react';
+import FooterLayout from '../../layouts/app/app-footer-layout';
 
 type LoginForm = {
     email: string;
@@ -37,6 +39,11 @@ export default function Login({ status, canResetPassword }: LoginProps) {
 
     return (
         <OuterLayout>
+            <div className='pt-5 pl-5'>
+                <a href={"/"} >
+                <ArrowLeft />
+                </a>
+            </div>
             <AuthEventLayout>
                 <Head title="Log in" />
                 <div className="space-y-6">
@@ -87,6 +94,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                     </form>
                 </div>
             </AuthEventLayout>
+            <FooterLayout isCompany={false}></FooterLayout>
         </OuterLayout>
         
     );

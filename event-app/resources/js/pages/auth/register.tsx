@@ -18,7 +18,7 @@ import { ArrowRight } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox"
 import AuthLayout from '@/layouts/auth-layout';
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-
+import AuthEventLayout from '@/layouts/auth/auth-event-layout';
 
 type RegisterForm = {
     name: string;
@@ -67,7 +67,7 @@ export default function Register() {
 
     return (
         <OuterLayout isCompany={true}>
-            <AuthLayout title="Skapa ett företagskonto" description="Enter your details below to create your account">
+            <AuthEventLayout>
                 <Head title="Register" />
                 <div className='pt-10 bg-white'>
 
@@ -299,7 +299,7 @@ export default function Register() {
 
     </form>
             </div>   
-            </AuthLayout>
+            </AuthEventLayout>
             <FooterLayout isCompany={true}></FooterLayout>
         </OuterLayout>
     );

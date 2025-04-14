@@ -36,7 +36,7 @@ export default function Profile({ mustVerifyEmail, status, isStudent, isCompany 
     return (
         <OuterLayout isCompany={isCompany}>
         <SettingsLayout>
-        <Head title="User settings" />
+        <Head title="Inställningar" />
             <div className="space-y-6">
             <h1 className='text-[48px] font-thin py-4 lg:py-0'>REDIGERA KONTO</h1>
                 <form onSubmit={submit} className="space-y-6">

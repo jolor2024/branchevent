@@ -47,7 +47,7 @@ export default function Password({isCompany}) {
     return (
         <OuterLayout isCompany={isCompany}>
 <SettingsLayout>
-        <Head title="Profile settings" />
+        <Head title="Inställningar" />
             <h1 className='text-[48px] font-thin py-4'>ÄNDRA LÖSENORD</h1>
             <div className="space-y-6">
                 <form onSubmit={updatePassword} className="space-y-6">
