@@ -62,10 +62,16 @@ export default function Dashboard({companies}) {
                             <p className=''>{company.company_type}</p>
                             <div className='flex gap-4 flex-wrap'>
                                 {rolesArray.length > 0 && (
-                                    rolesArray.map((role, index) => (
-                                        <span className='bg-amber-300 px-6 rounded-xl py-1.5'>{role}</span>
-                                    ))
-                                )}
+                                    rolesArray.map((role, index) => {
+                                        const colors = ['bg-amber-300', 'bg-green-300', 'bg-blue-300'];
+                                        const colorClass = colors[index % 3];
+                                        return (
+                                            <span key={index} className={`${colorClass} px-6 rounded-xl py-1.5`}>
+                                                {role}
+                                            </span>
+                                        );
+                                    })
+                            )}
                             </div>
       
                         </div>

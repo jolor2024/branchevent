@@ -20,10 +20,10 @@ export default function StudentSettingsLayout({ children }: PropsWithChildren) {
                 </a>
             </div>
 
-            <div className='flex flex-row lg:px-20 gap-10 items-center justify-center'>
+            <div className='flex flex-row lg:px-20 gap-16 items-center justify-around'>
                 <section className="max-w-xl">{children}</section>
                 <div className='hidden lg:block'>
-                    <img src="/assets/herostudent.png" alt="Logo" className="w-[500px] max-h-[600px]" />
+                    <img src="/assets/dashboard.png" alt="Logo" className="w-[400px]" />
                 </div>
             </div>
         <FooterLayout isCompany={false}></FooterLayout>

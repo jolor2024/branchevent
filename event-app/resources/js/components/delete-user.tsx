@@ -41,7 +41,7 @@ export default function DeleteUser() {
 
                 <Dialog>
                     <DialogTrigger asChild>
-                        <Button className='bg-white text-primary-red shadow-white'>TA BORT MITT KONTO</Button>
+                        <Button className='bg-white text-primary-red hover:text-primary-blue  shadow-white hover:bg-white cursor-pointer'>TA BORT MITT KONTO</Button>
                     </DialogTrigger>
                     <DialogContent>
                         <DialogTitle>Är du säker på att du vill ta bort ditt konto och all information och val du har gjort?</DialogTitle>
