@@ -72,7 +72,7 @@ export default function Register() {
                 <div className='pt-10 bg-white'>
 
                 {currentStep === 1 && (
-                    <a href={"/"} >
+                    <a href={"/lia"} >
                     <ArrowLeft />
                     </a>
                 )}

@@ -73,7 +73,7 @@ export default function Welcome() {
                   >
                       <span>Logga in</span>
                       <CircleUserRound className="text-white lg:text-primary-blue" />
-                  </Link>
+                  </Link> 
                   </div>
                   {/* Tabs Desktop */}
                 
@@ -131,8 +131,10 @@ export default function Welcome() {
           </section>
 
           <div className="flex justify-center w-full" >
-              <Link
-                href={route('register')}
+            <Link
+                href={activeTab === 'company' 
+                    ? route('register') 
+                    : route('register.student')}
                 id="register-button"
                 className={`${
                   activeTab === "company" ? "bg-primary-blue" : "bg-primary-red"

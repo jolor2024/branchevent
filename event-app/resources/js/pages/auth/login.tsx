@@ -40,7 +40,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
     return (
         <OuterLayout>
             <div className='pt-5 pl-5'>
-                <a href={"/"} >
+                <a href={"/lia"} >
                 <ArrowLeft />
                 </a>
             </div>

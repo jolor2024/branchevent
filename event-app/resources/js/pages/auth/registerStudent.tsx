@@ -53,7 +53,7 @@ export default function Register() {
             <AuthLayout title="Create a student account" description="Enter your details below to create your account">
                 <Head title="Register" />
                 <div className='pt-10 bg-white'>
-                <a href={"/"} >
+                <a href={"/lia"} >
                     <ArrowLeft />
                 </a>
                 <h1 className='text-4xl font-thin my-4 p-0 mb-0'>SKAPA ETT STUDENTKONTO</h1>
